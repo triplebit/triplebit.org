@@ -1,30 +1,22 @@
 ---
-layout: page
 title: About
+layout: page
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+Triplebit is a U.S. nonprofit organization and transit internet service provider (ISP) based in Minneapolis, MN.
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Triplebit envisions a world where access and privacy are the defaults. Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates high capacity Tor exit relays and other critical privacy infrastructure.
 
-There are currently two themes built on Poole:
+## Network
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+Triplebit's [Autonomous System Number (ASN)](https://www.arin.net/resources/guide/asn/) is [401332](https://whois.arin.net/rest/asn/AS401332.html).
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+## Volunteer Directors
 
-## Setup
+### Jonah Aragon ([@jonah](https://mastodon.neat.computer/@jonah))
 
-Some fun facts about the setup of this project include:
+[Jonah](https://www.jonaharagon.com) is a privacy and security engineer and long-time director of [Privacy Guides](https://www.privacyguides.org/en/).
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+### Henry Fisher ([@hen](https://social.lol/@hen))
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+### Carey Parker ([@FirewallDragons](https://mastodon.social/@FirewallDragons))

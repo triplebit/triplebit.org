@@ -1,0 +1,15 @@
+---
+layout: page
+title: History
+---
+
+<div class="posts">
+  {% for post in site.history reversed %}
+  <div class="post">
+    <h2 class="post-title">
+      <span class="post-date">{{ post.date | date_to_string }}</span>
+    </h2>
+    {{ post.content }}
+  </div>
+  {% endfor %}
+</div>
