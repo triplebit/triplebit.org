@@ -21,5 +21,6 @@ Triplebit envisions a world where access and privacy are the defaults. Read more
 
 ## Status
 
+- Follow <a href="https://mstdn.plus/@triplebit" rel="me">@triplebit@mstdn.plus</a> on Mastodon
 - View Triplebit's Tor relays on Tor Project's [Relay Search](https://metrics.torproject.org/rs.html#search/as:401332)
 - View Triplebit's [BGP status](https://bgp.he.net/AS401332) as seen by Hurricane Electric
