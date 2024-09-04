@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
   <title>
-    {% if page.title == "Home" %}
+    {% if page.url == "/" %}
       {{ site.title }} &middot; {{ site.tagline }}
     {% else %}
       {{ page.title }} &middot; {{ site.title }}
@@ -42,7 +42,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ site.url }}">
   <meta property="og:description" content="{{ site.title }}: {{ site.description }}">
-  {% if page.title == "Home" %}
+  {% if page.url == "/" %}
   <meta property="og:title" content="{{ site.title }} &middot; {{ site.tagline }}">
   <meta name="twitter:title" content="{{ site.title }} &middot; {{ site.tagline }}">
   {% else %}
