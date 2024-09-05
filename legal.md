@@ -34,7 +34,18 @@ Triplebit does not have subscribers or account holders and cannot identify the I
 
 ## Email Spam
 
-Triplebit does not host email services. Please direct your complaint to the mail server operator given in the email header, so they can handle abuse according to their laws and policies.
+Triplebit does **not** host email services. Please direct your complaint to the mail server operator given in the email header, so they can handle abuse according to their laws and policies.
+
+## Triplebit Development Corporation
+
+Triplebit does **not** host services in the following network ranges:
+
+- `2602:F81C:: - 2602:F81C:0:FFFF:FFFF:FFFF:FFFF:FFFF`
+  - a.k.a. `2602:F81C::/48`
+- `23.188.56.0 - 23.188.56.63`
+  - a.k.a. `23.188.56.0/26`
+
+These networks are assigned to the [Triplebit Development Corporation](https://www.triplebit.dev/), a separate legal entity. If you have a complaint regarding services originating from the above networks, please refer to <https://www.triplebit.dev/legal/>.
 
 ## Contact Info
 
