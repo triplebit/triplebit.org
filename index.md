@@ -2,6 +2,15 @@
 layout: default
 ---
 
+<script type="application/ld+json">
+  {
+    "@context" : "https://schema.org",
+    "@type" : "WebSite",
+    "name" : "Triplebit AS 401332",
+    "url" : "https://www.triplebit.org/"
+  }
+</script>
+
 # ![Triplebit](/public/triplebit-logo.svg "Triplebit logo")
 
 ---
