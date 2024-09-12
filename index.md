@@ -6,8 +6,23 @@ layout: default
   {
     "@context" : "https://schema.org",
     "@type" : "WebSite",
-    "name" : "Triplebit AS 401332",
-    "url" : "https://www.triplebit.org/"
+    "name" : "Triplebit (AS 401332)",
+    "alternateName" : "Triplebit",
+    "url" : "https://www.triplebit.org",
+    "mainEntity" : {
+      "@context" : "https://schema.org",
+      "@type" : "NGO",
+      "name" : "Triplebit",
+      "logo" : "https://www.triplebit.org/public/triplebit-social-pic.png",
+      "url" : "https://www.triplebit.org",
+      "description" : "Triplebit is a U.S. nonprofit organization and transit internet service provider based in Minneapolis, MN.",
+      "disambiguatingDescription" : "Nonprofit internet service provider",
+      "sameAs": [
+        "https://mstdn.plus/@triplebit",
+        "https://twitter.com/TriplebitNET",
+        "https://www.peeringdb.com/net/37213"
+      ]
+    }
   }
 </script>
 
