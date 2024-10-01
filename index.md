@@ -32,7 +32,7 @@ layout: default
 
 Founded in 2024, Triplebit is a U.S. nonprofit organization and transit internet service provider (ISP) based in Minneapolis, MN.
 
-Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates high capacity Tor exit relays and other critical privacy infrastructure.
+Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity Tor exit relays and other critical privacy infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/).
 
 <!-- 
 We enhance network privacy by:
