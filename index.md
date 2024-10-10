@@ -48,4 +48,6 @@ Triplebit envisions a world where access and privacy are the defaults. We encour
 
 - Follow <a href="https://mstdn.plus/@triplebit" rel="me">@triplebit@mstdn.plus</a> on Mastodon
 - View Triplebit's Tor relays on Tor Project's [Relay Search](https://metrics.torproject.org/rs.html#search/as:401332)
-- View Triplebit's [BGP status](https://bgp.he.net/AS401332) as seen by Hurricane Electric
+- View Triplebit's live [BGP/peering status](https://bgp.tools/as/401332) on bgp.tools
+
+To troubleshoot connectivity to/from our network, you can perform a traceroute or ping from our network to any internet host via [this web portal](https://bgp.he.net/AS401332#_traceroute): Simply enter the IP/hostname you want to query, select `Probe #7395` from the list, and our [RIPE anchor](https://atlas.ripe.net/probes/7395) will query the host and return the results to you.
