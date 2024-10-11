@@ -1,4 +1,4 @@
-# ![AS401332](public/triplebit-logo.svg "Triplebit logo"){ width=75% }
+# ![AS401332](public/triplebit-logo.svg "Triplebit logo"){ width=70% .center }
 
 <script type="application/ld+json">
   {

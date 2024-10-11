@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Transparency Report
 
 Date: 2024-10-10

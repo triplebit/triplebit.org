@@ -12,6 +12,8 @@ You can connect to our node via your wallet by simply entering our domain (`xmr.
 
 You *should* connect with TLS over port `443` or connect using the `.onion` address via the Tor network, as both of these options provide additional security/encryption between yourself and our node.
 
+![Screenshot of Monero Wallet settings showing xmr.triplebit.org entered in the Address box, and 443 entered in the port box, with other settings left as their defaults](images/monero-wallet.png){ loading=lazy }
+
 Our node supports CORS (wildcard `Access-Control-Allow-Origin` header), meaning it can be used with web/javascript/wasm-based wallets.
 
 ## Privacy Advice

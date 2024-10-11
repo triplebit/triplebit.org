@@ -11,6 +11,7 @@
   box-shadow: none;
 }
 
+/* Stylize header logo text */
 .md-header__topic {
   text-transform: uppercase;
   font-style: italic;
@@ -18,6 +19,12 @@
   font-size: 1rem;
 }
 
+/* Remove space between logo and text */
 [dir=ltr] .md-header__title {
   margin-left: 0;
+}
+
+/* Center logo on homepage */
+h1:has(> img.center) {
+  text-align: center;
 }
