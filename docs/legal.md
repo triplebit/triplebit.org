@@ -21,7 +21,7 @@ The Tor Project validates IP addresses of Tor routers at <https://exonerator.tor
 
 ## What Information Does Triplebit Retain?
 
-Triplebit does not log any network information, not even on our perimeter firewall and router.
+Triplebit does not log any network information related to our Tor relays and exit routers, not even on our perimeter firewall and router.
 
 ## Digital Millennium Copyright Act Safe Harbor
 

@@ -1,4 +1,4 @@
-# Relays
+# Tor Relays
 
 Triplebit operates Tor relays on **2602:f81c:9::/48** and **23.188.56.128/26** (specifically IPs 23.188.56**.130** through 23.188.56**.190**).
 

@@ -47,13 +47,16 @@ nav:
     - history.md
     - people.md
     - donate.md
-  - Tor Relays:
+  - Services:
+    - services.md
+  - Tor Network:
     - relays.md
     - legal.md
   - Monero:
     - monero.md
   - Network Operations:
     - peering.md
+    - looking-glass.md
   - Transparency:
     - transparency.md
   - Shop: https://shop.jonaharagon.com/collections/triplebit
