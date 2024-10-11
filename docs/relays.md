@@ -1,8 +1,8 @@
 # Relays
 
-Triplebit operates Tor relays on **23.188.56.128/26** (i.e. **23.188.56.129 - 23.188.56.190**).
+Triplebit operates Tor relays on **23.188.56.128/26** (specifically IPs 23.188.56**.130** through 23.188.56**.190**).
 
-If you are concerned about traffic originating from this network, please consult our [FAQ](legal.md) before contacting us, although we are always happy to chat!
+If you are concerned about traffic originating from this network, please consult our [FAQ](legal.md) before contacting us, although we are always happy to discuss!
 
 Triplebit currently operates the following relays (by fingerprint):
 

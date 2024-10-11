@@ -31,10 +31,6 @@ The Digital Millennium Copyright Act (DMCA) offers four safe harbors to protect 
 
 Triplebit does not have subscribers or account holders and cannot identify the IP addresses of individuals who send communications over the Tor network. Nonetheless, it is our policy to terminate the use of Triplebit by repeat infringers in appropriate circumstances.
 
-## Email Spam
-
-Triplebit does **not** host email services. Please direct your complaint to the mail server operator given in the email header, so they can handle abuse according to their laws and policies.
-
 ## Contact Info
 
 We would be happy to answer any questions you have about our Tor exit routers that are not covered by this page. Please contact us at <abuse@triplebit.org>. If email is not an option, you may contact our director at the following mailing address:

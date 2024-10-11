@@ -24,6 +24,10 @@
   }
 </script>
 
+!!! example ""
+
+    If you have a question regarding traffic originating from **23.188.56.130/26** (i.e. any addresses in between 23.188.56**.130** and 23.188.56**.190**), please read [our FAQ](legal.md) which includes our contact information.
+
 Founded in 2024, Triplebit is a U.S. nonprofit organization and transit internet service provider (ISP) based in Minneapolis, MN.
 
 Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity Tor exit relays and other critical privacy infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/).
