@@ -26,7 +26,7 @@
 
 !!! info ""
 
-    If you have a question regarding traffic originating from **23.188.56.130/26** (i.e. any addresses in between 23.188.56**.130** and 23.188.56**.190**), please read [our FAQ](legal.md) which includes our contact information.
+    If you have a question regarding traffic originating from **23.188.56.130/26** (i.e. any addresses in between 23.188.56**.130** and 23.188.56**.190**) or **2602:f81c:9::/48** (i.e. any IP address that starts with 2602:f81c:**9:**), please read [our FAQ](legal.md) which includes our contact information.
 
 Founded in 2024, Triplebit is a U.S. nonprofit organization and transit internet service provider (ISP) based in Minneapolis, MN.
 
