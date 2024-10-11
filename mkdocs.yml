@@ -50,6 +50,8 @@ nav:
   - Tor Relays:
     - relays.md
     - legal.md
+  - Monero:
+    - monero.md
   - Network Operations:
     - peering.md
   - Transparency:
