@@ -2,3 +2,6 @@ site_name: Triplebit
 site_url: https://www.triplebit.org/
 theme:
   name: material
+
+exclude_docs: |
+  !.well-known
