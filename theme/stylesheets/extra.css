@@ -1,0 +1,23 @@
+:root, [data-md-color-scheme=default] {
+  --md-primary-fg-color: #000000;
+  --md-typeset-a-color: #ff0000
+}
+[data-md-color-scheme=slate] {
+  --md-primary-fg-color: #000000;
+  --md-typeset-a-color: #ff0000
+}
+
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-header__topic {
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+[dir=ltr] .md-header__title {
+  margin-left: 0;
+}

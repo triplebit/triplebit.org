@@ -1,7 +1,48 @@
 site_name: Triplebit
 site_url: https://www.triplebit.org/
+
 theme:
   name: material
+  logo: public/triplebit-logo-square-white.svg
+  custom_dir: theme
+  font:
+    text: Montserrat
+  palette:
+    primary: custom
+    accent: red
+  features:
+    - navigation.sections
+    - navigation.tabs
+
+extra:
+  social:
+    - icon: fontawesome/brands/mastodon 
+      link: https://mstdn.plus/@triplebit
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.snippets
+
+plugins:
+  - privacy: {}
 
 exclude_docs: |
   !.well-known
+
+extra_css:
+  - stylesheets/extra.css
+
+watch:
+  - theme
+
+nav:
+  - About:
+    - index.md
+    - history.md
+    - people.md
+    - donate.md
+  - Tor Relays:
+    - relays.md
+    - legal.md
+  - Network Operations:
+    - peering.md
