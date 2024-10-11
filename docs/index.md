@@ -24,7 +24,7 @@
   }
 </script>
 
-!!! example ""
+!!! info ""
 
     If you have a question regarding traffic originating from **23.188.56.130/26** (i.e. any addresses in between 23.188.56**.130** and 23.188.56**.190**), please read [our FAQ](legal.md) which includes our contact information.
 

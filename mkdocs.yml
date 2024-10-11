@@ -1,18 +1,21 @@
 site_name: Triplebit
 site_url: https://www.triplebit.org/
+edit_uri: https://github.com/triplebit/triplebit.org/edit/main/docs/
 
 theme:
   name: material
+  favicon: public/triplebit-logo-square.svg
   logo: public/triplebit-logo-square-white.svg
   custom_dir: theme
   font:
     text: Montserrat
   palette:
     primary: custom
-    accent: red
+    accent: cyan
   features:
     - navigation.sections
     - navigation.tabs
+    - content.action.edit
 
 extra:
   social:
