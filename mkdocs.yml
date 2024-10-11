@@ -1,0 +1,4 @@
+site_name: Triplebit
+site_url: https://www.triplebit.org/
+theme:
+  name: material
