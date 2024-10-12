@@ -2,11 +2,11 @@
 
 Triplebit operates a public **Monero remote node** accessible via both the clearnet internet and the Tor network:
 
+- **`un4yrhwq4d53caoiaadeiur5e5wgkgp74zw3p3twqh3nxh6ztz347dad.onion:18081`**
 - **`https://xmr.triplebit.org:443`** (with TLS/SSL)
 - **`xmr.triplebit.org:18081`**
     - `[2602:f81c:8::111]:18081`
     - `23.188.56.111:18081`
-- **`un4yrhwq4d53caoiaadeiur5e5wgkgp74zw3p3twqh3nxh6ztz347dad.onion:18081`**
 
 You can connect to our node via your wallet by simply entering our domain (`xmr.tiplebit.org`) and port (`443` for TLS/SSL, `18081` otherwise) in your wallet's settings. An example of how to do this with the desktop GUI wallet [is provided here](https://www.getmonero.org/resources/user-guides/remote_node_gui.html).
 
@@ -14,7 +14,7 @@ You *should* connect with TLS over port `443` or connect using the `.onion` addr
 
 ![Screenshot of Monero Wallet settings showing xmr.triplebit.org entered in the Address box, and 443 entered in the port box, with other settings left as their defaults](images/monero-wallet.png){ loading=lazy }
 
-Our node supports CORS (wildcard `Access-Control-Allow-Origin` header), meaning it can be used with web/javascript/wasm-based wallets.
+Our node supports CORS (wildcard `Access-Control-Allow-Origin` header), meaning it can be used with web/javascript/wasm-based wallets. We will support I2P by the end of 2024.
 
 ## Privacy Advice
 
@@ -36,6 +36,13 @@ If you operate your own Monero *node*, either public or private, we strongly enc
 
 ```
 p2p-use-ipv6=1
+```
+
+You can also optionally ensure you peer with our node via IPv6 by adding these settings to your configuration (note port 18080 is used for P2P connections, as opposed to 18081 for RPC):
+
+```
+add-peer=[2602:f81c:8::111]:18080
+add-priority-node=[2602:f81c:8::111]:18080
 ```
 
 ## About Monero

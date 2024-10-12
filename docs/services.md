@@ -6,6 +6,7 @@ Triplebit operates the following services as free/public-access utilities:
 - [Monero remote node](monero.md)
 - [RIPE Atlas anchor](https://atlas.ripe.net/probes/7395)
 - [bgp.tools Looking Glass](https://bgp.tools/lg/401332)
+- [Routinator RPKI Validation](https://routinator.triplebit.net/ui/)
 - Globalping probe
 
 ---
