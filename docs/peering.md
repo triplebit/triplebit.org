@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Peering
+description: Peering with Triplebit is an excellent way to contribute to the Tor network! We have an open peering policy, and we encourage peering with us at any Internet Exchange where we are hosted.
 ---
 
 Peering with Triplebit is an excellent way to contribute to the Tor network! We encourage peering with us directly if you are a member of the following Internet Exchanges:

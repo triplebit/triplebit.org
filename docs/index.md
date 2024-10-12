@@ -1,3 +1,10 @@
+---
+social:
+  cards_layout: default/only/image
+  cards_layout_options:
+    background_image: theme/public/globe-cover.svg
+---
+
 # ![AS401332](public/triplebit-logo.svg "Triplebit"){ width=70% .center }
 
 <script type="application/ld+json">

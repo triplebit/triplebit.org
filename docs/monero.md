@@ -1,3 +1,7 @@
+---
+description: Triplebit operates a public Monero remote node accessible via both the clearnet internet and the Tor network.
+---
+
 # Monero Remote Node
 
 Triplebit operates a public **Monero remote node** accessible via both the clearnet internet and the Tor network:

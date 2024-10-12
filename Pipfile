@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-mkdocs-material = {file = "mkdocs-material-insiders"}
+mkdocs-material = {path = "./mkdocs-material", extras = ["imaging"]}
 
 [dev-packages]
 

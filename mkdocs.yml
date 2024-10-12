@@ -1,4 +1,6 @@
 site_name: Triplebit
+site_description: >-
+  Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide.
 site_url: https://www.triplebit.org/
 edit_uri: https://github.com/triplebit/triplebit.org/edit/main/docs/
 
@@ -30,7 +32,10 @@ markdown_extensions:
   - pymdownx.superfences
 
 plugins:
-  - privacy: {}
+  privacy: {}
+  social:
+    cards_layout_dir: cards
+    cards_layout: page
 
 exclude_docs: |
   !.well-known

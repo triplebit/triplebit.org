@@ -19,16 +19,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
           submodules: true
           token: ${{ secrets.PAT }}
-      - uses: actions/setup-python@v2
+      - name: Install Python (pipenv)
+        uses: actions/setup-python@v5
+        with:
+          cache: "pipenv"
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - run: pip install -e mkdocs-material-insiders
-      - run: mkdocs build
+      - name: Install Python Dependencies
+        run: |
+          pip install pipenv
+          pipenv install
+          sudo apt install pngquant
+      - name: Build Site
+        run: pipenv run mkdocs build
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
