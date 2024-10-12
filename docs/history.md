@@ -2,9 +2,21 @@
 title: History
 ---
 
+## 10 Oct 2024
+
+- Triplebit enabled its second set of 10 [Tor relays](relays.md) as middle nodes to test performance and bandwidth.
+- Triplebit enabled its [public Monero remote node](monero.md)
+- Triplebit became a [RIPE Atlas Anchor](https://atlas.ripe.net/probes/7395/)
+
+## 07 Oct 2024
+
+- Triplebit enabled its first 10 [Tor relays](relays.md) as middle nodes to test performance and bandwidth.
+- Triplebit began feeding network data to [bgp.tools](https://bgp.tools/as/401332#connectivity)
+
 ## 30 Sep 2024
 
 - Triplebit’s first rack at [Ridgeview Data Center](https://ridgeviewmn.com/) was installed.
+- Triplebit initiated peering with Cloudflare and Hurricane Electric
 
 ## 05 Sep 2024
 
