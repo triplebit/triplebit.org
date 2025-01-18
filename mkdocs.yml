@@ -50,7 +50,6 @@ nav:
   - About:
     - index.md
     - history.md
-    - people.md
     - donate.md
   - Services:
     - services.md
