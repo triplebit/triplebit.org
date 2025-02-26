@@ -18,6 +18,7 @@ theme:
     - navigation.sections
     - navigation.tabs
     - content.action.edit
+    - navigation.indexes
 
 extra:
   social:
@@ -36,6 +37,9 @@ plugins:
   social:
     cards_layout_dir: cards
     cards_layout: page
+  blog:
+    archive: true
+  meta: {}
 
 exclude_docs: |
   !.well-known
@@ -51,6 +55,8 @@ nav:
     - index.md
     - history.md
     - donate.md
+  - Blog:
+    - blog/index.md
   - Services:
     - services.md
   - Tor Network:

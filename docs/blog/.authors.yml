@@ -1,0 +1,10 @@
+authors:
+  jonah:
+    name: Jonah Aragon
+    description: Administrator
+    avatar: https://github.com/jonaharagon.png
+    mastodon:
+      username: jonah
+      instance: neat.computer
+    twitter: jonaharagon
+    bluesky: jonaharagon.com
