@@ -59,6 +59,7 @@ nav:
     - blog/index.md
   - Services:
     - services.md
+    - privacy.md
   - Tor Network:
     - relays.md
     - legal.md
