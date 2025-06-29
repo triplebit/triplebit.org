@@ -1,3 +1,11 @@
 # prefix,country_code,region_code,city,postal
 23.188.56.0/24,US,US-MN,Minnetonka,
+103.17.152.0/24,,,,
+103.17.153.0/24,,,,
+103.17.154.0/24,US,US-MO,Kansas City,
+103.17.155.0/24,,,,
 2602:f81c::/41,US,US-MN,Minnetonka,
+2602:f81c:80::/48,,,,
+2602:f81c:81::/48,,,,
+2602:f81c:82::/48,,,,
+2602:f81c:83::/48,US,US-MO,Kansas City,
