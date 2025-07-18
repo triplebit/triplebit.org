@@ -55,8 +55,6 @@ nav:
     - index.md
     - history.md
     - donate.md
-  - Blog:
-    - blog/index.md
   - Services:
     - services.md
     - privacy.md
@@ -70,4 +68,3 @@ nav:
     - looking-glass.md
   - Transparency:
     - transparency.md
-  - Shop: https://shop.jonaharagon.com/collections/triplebit

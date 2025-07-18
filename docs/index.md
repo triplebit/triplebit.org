@@ -31,28 +31,22 @@ social:
   }
 </script>
 
-!!! info ""
-
-    If you have a question regarding traffic originating from **23.188.56.130/26** (i.e. any addresses in between 23.188.56**.130** and 23.188.56**.190**) or **2602:f81c:9::/48** (i.e. any IP address that starts with 2602:f81c:**9:**), please read [our FAQ](legal.md) which includes our contact information.
-
 Founded in 2024, Triplebit is a U.S. nonprofit organization and transit internet service provider (ISP) based in Minneapolis, MN.
 
-Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity Tor exit relays and other critical privacy infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/).
+Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/), Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.
 
-<!-- 
 We enhance network privacy by:
 
 - Operating infrastructure on hardware we own
 - Peering directly with major content providers and content delivery networks, reducing middlemen ISPs
 - Homing our services on major Internet Exchanges
--->
 
 Triplebit envisions a world where access and privacy are the defaults. We encourage you to read more about privacy at [privacyguides.org](https://www.privacyguides.org).
 
 ## Status
 
 - Follow <a href="https://mstdn.plus/@triplebit" rel="me">@triplebit@mstdn.plus</a> on Mastodon
-- View Triplebit's Tor relays on Tor Project's [Relay Search](https://metrics.torproject.org/rs.html#search/23.188.56.)
+- View Triplebit's Tor relays on Tor Project's [Relay Search](https://metrics.torproject.org/rs.html#search/as:AS401332)
 
 ## Network
 

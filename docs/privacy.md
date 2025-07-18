@@ -82,4 +82,5 @@ The data center operators and other upstream transit internet service providers 
 - [3HCloud](https://3hcloud.com/)
 - [Constant](https://www.constant.com/)
 - [Hurricane Electric](https://he.net/)
+- [NOCIX LLC](https://1530swift.com/privacy-policy.php)
 - [US Internet](https://usinternet.com/)
