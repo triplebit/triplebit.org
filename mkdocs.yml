@@ -53,18 +53,18 @@ watch:
 nav:
   - About:
     - index.md
+    - transparency.md
     - history.md
     - donate.md
   - Services:
     - services.md
     - privacy.md
-  - Tor Network:
+  - Tor:
     - relays.md
+    - bridges.md
     - legal.md
   - Monero:
     - monero.md
   - Network Operations:
-    - peering.md
     - looking-glass.md
-  - Transparency:
-    - transparency.md
+    - peering.md
