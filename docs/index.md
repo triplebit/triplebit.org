@@ -35,6 +35,8 @@ Founded in 2024, Triplebit is a U.S. nonprofit organization and transit internet
 
 Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/), Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.
 
+![Map of Triplebit network locations](public/triplebit-map.webp)
+
 We enhance network privacy by:
 
 - Operating infrastructure on hardware we own
