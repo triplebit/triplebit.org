@@ -6,4 +6,8 @@ If you are interested in donating IPv4 space or equipment, or in donating time b
 
 ---
 
+**XMR:** `8852xQVTkehdDJQew6ypLcQ52rkcSRZdu8thMqHAJdXjEAQE5o1hWMUYVtsq5bNLU3WK8NqdbtTfddR2Wc8wCi8s4jiq7JQ`
+
+---
+
 Our financial donation platforms are pending our IRS 501(c)(3) application determination, but if you would like to arrange a contribution in the meantime please feel free to get in touch via Signal or email.

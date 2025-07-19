@@ -65,6 +65,6 @@ nav:
     - legal.md
   - Monero:
     - monero.md
-  - Network Operations:
+  - Network:
     - looking-glass.md
     - peering.md

@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# Transparency Report
+# Transparency
 
 Date: 2025-07-17
 
