@@ -8,6 +8,30 @@ Triplebit operates high performance, unfiltered, and high capacity bridges on th
 
 Triplebit's goal is to enable IPv6 connectivity and promote IPv6 adoption across the Tor network and the internet as a whole. As such, our relays and infrastructure are 100% dual-stack.
 
+## Manual Bridges
+
+![](public/public-bridges.png){ align=right width=30% }
+
+Many of our bridges are only distributed via private methods, such as bridge distribution methods operated by the Tor Project, or [private bridges](#private-bridges) we operate for NGOs and other groups, so that they are not easily blocked. However, if you would like to use Triplebit-operated bridges in place of your guard node and are not experiencing censorship yourself, we operate **4** public bridges in two locations for you to choose from.
+
+Please read the Tor Project's bridge [documentation](https://tb-manual.torproject.org/bridges/) for information on how to set up manual bridges in Tor Browser. These bridges, like all of our infrastructure, run on bare-metal servers owned by Triplebit.
+
+Near **Kansas City, USA**:
+
+```
+Bridge obfs4 103.17.154.136:3389 224C0D16115E030C50579B0B9C2A644421072F66 cert=q7b3in5QkM7/w+Pu+Aze2PPJaPfW7UIygHBg1Y1Wbi/2vH6UQGJsSsgUlvdeG5qPhdC2Og iat-mode=0
+webtunnel 10.0.2.2:443 D965164C1D9FB4FDD92E4FD5CDC6005E7820A687 url=https://cdn-25.triplebit.dev/nLcyjWAU3ILGenSItxtDAIJy
+```
+
+Near **Warsaw, Poland**:
+
+```
+Bridge obfs4 103.17.153.49:3389 E3E13A69A1A6947E3D5B8C0A3C16D07829F57F07 cert=qULg51W+WSsESmuB46yimCcCpSDkkifwO1ctodpmaGuV2a9GKANf/Cwy7tdaBiucdIRCWA iat-mode=0
+webtunnel 10.0.2.3:443 B094B41CA85C7A61FCBC11E671AA6D31737F9FB4 url=https://cdn-47.triplebit.dev/ua5noh9xeHiehe4h
+```
+
+Using a trustworthy bridge can be preferable to using a standard guard node, because it can typically offer better performance and it significantly lowers the risk of your entry point to the Tor network being compromised or malicious. On the other hand, it can make you stand out from other Tor clients (particularly to local network operators), because you will likely be the only Tor user locally using that bridge. This may be of particular note to you if you use Tor while traveling between different public networks, and don't want to be physically tracked between them. You should understand your needs and [threat model](https://www.privacyguides.org/en/basics/threat-modeling/) before changing any Tor settings.
+
 ## Snowflake
 
 Triplebit currently operates **9** NAT-free, unfiltered Snowflake proxy servers across our points of presence. Snowflake servers do not have any public identifiers, so they are not enumerated on this page.
@@ -16,7 +40,9 @@ Snowflake is the easiest way to contribute to the Tor Project, and you can do so
 
 ## WebTunnel and obfs4
 
-Triplebit currently operates the following Tor bridges (by hashed fingerprint):
+Triplebit runs **over 40** WebTunnel and obfs4 bridges in multiple locations and across many domain names and IP addresses which are not shared publicly. These bridges are distributed via various distribution [methods](https://gitlab.torproject.org/tpo/anti-censorship/rdsys/-/blob/main/doc/distributors.md) that are operated by the Tor Project, including [https](https://bridges.torproject.org/), in-browser settings, [Telegram](https://t.me/GetBridgesBot), lox, and email.
+
+We currently operate the following Tor bridges (by *hashed* fingerprint):
 
 ```
 --8<--
