@@ -4,7 +4,7 @@ description: Triplebit operates high performance, unfiltered, and high capacity 
 
 # Tor Relays
 
-Triplebit operates high performance, unfiltered, and high capacity exit relays on the Tor network. We are compliant with [CIISS 2](https://nusenu.github.io/ContactInfo-Information-Sharing-Specification/) and [Tor Proposal 326](https://spec.torproject.org/proposals/326-tor-relay-well-known-uri-rfc8615.html).
+Triplebit operates high performance, unfiltered, and high capacity relays on the Tor network. We are compliant with [CIISS 2](https://nusenu.github.io/ContactInfo-Information-Sharing-Specification/) and [Tor Proposal 326](https://spec.torproject.org/proposals/326-tor-relay-well-known-uri-rfc8615.html).
 
 Triplebit's goal is to enable IPv6 connectivity and promote IPv6 adoption across the Tor network and the internet as a whole. As such, our relays and infrastructure are 100% dual-stack.
 

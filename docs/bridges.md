@@ -10,7 +10,7 @@ Triplebit's goal is to enable IPv6 connectivity and promote IPv6 adoption across
 
 ## Manual Bridges
 
-![](public/public-bridges.png){ align=right width=30% }
+![](public/public-bridges.png){ align=right width=40% }
 
 Many of our bridges are only distributed via private methods, such as bridge distribution methods operated by the Tor Project, or [private bridges](#private-bridges) we operate for NGOs and other groups, so that they are not easily blocked. However, if you would like to use Triplebit-operated bridges in place of your guard node and are not experiencing censorship yourself, we operate **4** public bridges in two locations for you to choose from.
 
@@ -28,6 +28,15 @@ Near **Warsaw, Poland**:
 ```
 Bridge obfs4 103.17.153.49:3389 E3E13A69A1A6947E3D5B8C0A3C16D07829F57F07 cert=qULg51W+WSsESmuB46yimCcCpSDkkifwO1ctodpmaGuV2a9GKANf/Cwy7tdaBiucdIRCWA iat-mode=0
 webtunnel 10.0.2.3:443 B094B41CA85C7A61FCBC11E671AA6D31737F9FB4 url=https://cdn-47.triplebit.dev/ua5noh9xeHiehe4h
+```
+
+Near **Minneapolis, USA**: Via Cloudflare! (1)
+{ .annotate }
+
+1. This WebTunnel bridge in Minneapolis is behind Cloudflare's IP addresses and network, which can be worse for performance and privacy, but potentially better for circumventing censorship. Of course, Tor traffic is always end-to-end encrypted.
+
+```
+webtunnel 10.0.2.4:443 E4D6ECD7C758A22854A5BCC50B05EA901F4CA46E url=https://mastodon.neat.computer/shi0aiphohL1ooca
 ```
 
 Using a trustworthy bridge can be preferable to using a standard guard node, because it can typically offer better performance and it significantly lowers the risk of your entry point to the Tor network being compromised or malicious. On the other hand, it can make you stand out from other Tor clients (particularly to local network operators), because you will likely be the only Tor user locally using that bridge. This may be of particular note to you if you use Tor while traveling between different public networks, and don't want to be physically tracked between them. You should understand your needs and [threat model](https://www.privacyguides.org/en/basics/threat-modeling/) before changing any Tor settings.
