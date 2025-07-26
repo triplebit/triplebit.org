@@ -19,14 +19,14 @@ Please read the Tor Project's bridge [documentation](https://tb-manual.torprojec
 Near **Kansas City, USA**:
 
 ```
-Bridge obfs4 103.17.154.136:3389 224C0D16115E030C50579B0B9C2A644421072F66 cert=q7b3in5QkM7/w+Pu+Aze2PPJaPfW7UIygHBg1Y1Wbi/2vH6UQGJsSsgUlvdeG5qPhdC2Og iat-mode=0
+Bridge obfs4 103.17.154.136:443 224C0D16115E030C50579B0B9C2A644421072F66 cert=q7b3in5QkM7/w+Pu+Aze2PPJaPfW7UIygHBg1Y1Wbi/2vH6UQGJsSsgUlvdeG5qPhdC2Og iat-mode=1
 webtunnel 10.0.2.2:443 D965164C1D9FB4FDD92E4FD5CDC6005E7820A687 url=https://cdn-25.triplebit.dev/nLcyjWAU3ILGenSItxtDAIJy
 ```
 
 Near **Warsaw, Poland**:
 
 ```
-Bridge obfs4 103.17.153.49:3389 E3E13A69A1A6947E3D5B8C0A3C16D07829F57F07 cert=qULg51W+WSsESmuB46yimCcCpSDkkifwO1ctodpmaGuV2a9GKANf/Cwy7tdaBiucdIRCWA iat-mode=0
+Bridge obfs4 103.17.153.49:443 E3E13A69A1A6947E3D5B8C0A3C16D07829F57F07 cert=qULg51W+WSsESmuB46yimCcCpSDkkifwO1ctodpmaGuV2a9GKANf/Cwy7tdaBiucdIRCWA iat-mode=1
 webtunnel 10.0.2.3:443 B094B41CA85C7A61FCBC11E671AA6D31737F9FB4 url=https://cdn-47.triplebit.dev/ua5noh9xeHiehe4h
 ```
 
