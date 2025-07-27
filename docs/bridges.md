@@ -12,7 +12,7 @@ Triplebit's goal is to enable IPv6 connectivity and promote IPv6 adoption across
 
 ![](public/public-bridges.png){ align=right width=40% }
 
-Many of our bridges are only distributed via private methods, such as bridge distribution methods operated by the Tor Project, or [private bridges](#private-bridges) we operate for NGOs and other groups, so that they are not easily blocked. However, if you would like to use Triplebit-operated bridges in place of your guard node and are not experiencing censorship yourself, we operate **4** public bridges in two locations for you to choose from.
+Many of our bridges are only distributed via private methods, such as bridge distribution methods operated by the Tor Project, or [private bridges](#private-bridges) we operate for NGOs and other groups, so that they are not easily blocked. However, if you would like to use Triplebit-operated bridges in place of your guard node and are not experiencing censorship yourself, we operate **5** public bridges in two locations for you to choose from.
 
 Please read the Tor Project's bridge [documentation](https://tb-manual.torproject.org/bridges/) for information on how to set up manual bridges in Tor Browser. These bridges, like all of our infrastructure, run on bare-metal servers owned by Triplebit.
 
@@ -41,9 +41,18 @@ webtunnel 10.0.2.4:443 E4D6ECD7C758A22854A5BCC50B05EA901F4CA46E url=https://mast
 
 Using a trustworthy bridge can be preferable to using a standard guard node, because it can typically offer better performance and it significantly lowers the risk of your entry point to the Tor network being compromised or malicious. On the other hand, it can make you stand out from other Tor clients (particularly to local network operators), because you will likely be the only Tor user locally using that bridge. This may be of particular note to you if you use Tor while traveling between different public networks, and don't want to be physically tracked between them. You should understand your needs and [threat model](https://www.privacyguides.org/en/basics/threat-modeling/) before changing any Tor settings.
 
+### Private Snowflake (Beta)
+
+Triplebit operates a private Snowflake broker, completely independently of Tor Project's Snowflake infrastructure. Our Snowflake proxies can only be used by adding our custom Snowflake bridge lines to your Tor Browser or `torrc` configuration. These are not yet published, but feel free to contact us if you would like to test this service out.
+
+One benefit of our private broker is higher performance. We are only running dedicated proxies on high-speed networks, whereas the public Snowflake network is run by the public on all manner of devices and browser extensions. Of course, the flip side of this is that we lack the high IP diversity which makes the traditional Snowflake network difficult to block.
+
+- Bridge: [TriplebitSnowflake1](https://metrics.torproject.org/rs.html#details/4EF1E26841B69156F804CE616A086E6E40D996F2)
+- Bridge: [TriplebitSnowflake2](https://metrics.torproject.org/rs.html#details/00B2069390A9D67F9F23581E2B99F59FCA08D96B)
+
 ## Snowflake
 
-Triplebit currently operates **9** NAT-free, unfiltered Snowflake proxy servers across our points of presence. Snowflake servers do not have any public identifiers, so they are not enumerated on this page.
+Triplebit currently operates **4** NAT-free, unfiltered Snowflake proxy servers across our points of presence, which are registered to the Tor Project's public broker. If you choose to use the built-in Snowflake bridge in Tor Browser your traffic may be routed through these proxies, but there is no way to select them manually. Snowflake servers do not have any public identifiers, so they are not enumerated on this page.
 
 Snowflake is the easiest way to contribute to the Tor Project, and you can do so yourself from any web browser. Visit [**snowflake.torproject.org**](https://snowflake.torproject.org/) for more information about this technology.
 
