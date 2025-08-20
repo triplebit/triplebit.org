@@ -28,3 +28,21 @@
 h1:has(> img.center) {
   text-align: center;
 }
+
+/* Friends! */
+.md-typeset .mdx-specialthanks p {
+  margin:2em 0;
+  text-align:center
+}
+.md-typeset .mdx-specialthanks img {
+  height:3.25rem
+}
+.md-typeset .mdx-specialthanks p:last-child {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center
+}
+.md-typeset .mdx-specialthanks p:last-child>a {
+  display:block;
+  flex-shrink:0
+}

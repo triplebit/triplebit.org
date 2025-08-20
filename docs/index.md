@@ -57,3 +57,29 @@ Triplebit's [Autonomous System Number (ASN)](https://www.arin.net/resources/guid
 - View Triplebit's live [BGP/peering status](https://bgp.tools/as/401332) on bgp.tools
 
 To troubleshoot connectivity to/from our network, you can perform a traceroute or ping from our network to any internet host via [this web portal](https://bgp.he.net/AS401332#_traceroute): Simply enter the IP/hostname you want to query, select `Probe #7395` from the list, and our [RIPE anchor](https://atlas.ripe.net/probes/7395) will query the host and return the results to you.
+
+## Friends
+
+<div class="mdx-specialthanks" markdown>
+
+[![Privacy Guides]](https://www.privacyguides.org/en/){ rel=nofollow target=_blank title="Privacy Guides" }
+[![Ivy Cyber]](https://ivycyber.com){ rel=nofollow target=_blank title="Ivy Cyber" }
+[![Power Up Privacy]](https://powerupprivacy.com){ rel=nofollow target=_blank title="Power Up Privacy" }
+[![Unredacted]](https://unredacted.org){ rel=nofollow target=_blank title="Unredacted" }
+[![Kiwix]](https://kiwix.org){ rel=nofollow target=_blank title="Kiwix" }
+[![Tor Project]](https://www.torproject.org){ rel=nofollow target=_blank title="Tor Project" }
+[![Emerald Onion]](https://emeraldonion.org){ rel=nofollow target=_blank title="Emerald Onion" }
+[![Monero]](https://getmonero.org){ rel=nofollow target=_blank title="Monero" }
+[![Hurricane Electric]](https://he.net){ rel=nofollow target=_blank title="Hurricane Electric" }
+
+  [Privacy Guides]: /public/friends/privacy-guides.webp
+  [Ivy Cyber]: /public/friends/ivy-cyber.webp
+  [Power Up Privacy]: /public/friends/power-up-privacy.webp
+  [Unredacted]: /public/friends/unredacted.webp
+  [Kiwix]: /public/friends/kiwix.webp
+  [Tor Project]: /public/friends/tor-project.webp
+  [Emerald Onion]: /public/friends/emerald-onion.webp
+  [Monero]: /public/friends/monero.webp
+  [Hurricane Electric]: /public/friends/hurricane-electric.webp
+
+</div>
