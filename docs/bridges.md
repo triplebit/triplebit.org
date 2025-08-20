@@ -43,9 +43,38 @@ Using a trustworthy bridge can be preferable to using a standard guard node, bec
 
 ### Private Snowflake (Beta)
 
-Triplebit operates a private Snowflake broker, completely independently of Tor Project's Snowflake infrastructure. Our Snowflake proxies can only be used by adding our custom Snowflake bridge lines to your Tor Browser or `torrc` configuration. These are not yet published, but feel free to contact us if you would like to test this service out.
+![](public/public-snowflake.png){ align=right width=40% }
+
+Triplebit operates a private Snowflake broker, completely independently of Tor Project's Snowflake infrastructure. Our Snowflake proxies can only be used by adding our custom Snowflake bridge lines to your Tor Browser or `torrc` configuration.
 
 One benefit of our private broker is higher performance. We are only running dedicated proxies on high-speed networks, whereas the public Snowflake network is run by the public on all manner of devices and browser extensions. Of course, the flip side of this is that we lack the high IP diversity which makes the traditional Snowflake network difficult to block.
+
+Via **Google Amp Cache** (Recommended): (1)
+{ .annotate }
+
+1. Google Amp is only used to locate a Snowflake proxy. Your actual Tor traffic will be forwarded directly to a private Snowflake proxy.
+
+```
+snowflake 10.0.3.1:443 53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 fingerprint=53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 url=https://snowflake-broker.triplebit.dev/ ampcache=https://cdn.ampproject.org/ front=www.google.com ice=stun:stun.l.google.com:19302,stun:stun.ooma.com:3478,stun:stun2.l.google.com:19302,stun:stun3.l.google.com:19302,stun:stun.gmx.de:3478,stun:stun.gmx.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
+snowflake 10.0.3.2:443 A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 fingerprint=A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 url=https://snowflake-broker.triplebit.dev/ ampcache=https://cdn.ampproject.org/ front=www.gstatic.com ice=stun:stun.antisip.com:3478,stun:stun.epygi.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.mixvoip.com:3478,stun:stun.nextcloud.com:3478,stun:stun.bethesda.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
+```
+
+Via **Bunny.net**: (1)
+{ .annotate }
+
+1. Bunny.net is only used to locate a Snowflake proxy. Your actual Tor traffic will be forwarded directly to a private Snowflake proxy.
+
+```
+snowflake 10.0.3.1:80 53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 fingerprint=53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 url=https://triplebit-snowflake-broker.b-cdn.net/ fronts=www.bunny.net,www.iubenda.com ice=stun:stun.antisip.com:3478,stun:stun.epygi.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.mixvoip.com:3478,stun:stun.nextcloud.com:3478,stun:stun.bethesda.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
+snowflake 10.0.3.2:80 A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 fingerprint=A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 url=https://triplebit-snowflake-broker.b-cdn.net/ fronts=i.mg.homedepot.com,static3.jetpens.com ice=stun:stun.l.google.com:19302,stun:stun.ooma.com:3478,stun:stun2.l.google.com:19302,stun:stun3.l.google.com:19302,stun:stun.gmx.de:3478,stun:stun.gmx.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
+```
+
+Via **Triplebit**:
+
+```
+snowflake 10.0.3.1:8080 53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 fingerprint=53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 url=https://snowflake-broker.triplebit.dev/ ice=stun:stun.antisip.com:3478,stun:stun.epygi.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.mixvoip.com:3478,stun:stun.nextcloud.com:3478,stun:stun.bethesda.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
+snowflake 10.0.3.2:8080 A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 fingerprint=A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 url=https://snowflake-broker.triplebit.dev/ ice=stun:stun.l.google.com:19302,stun:stun.ooma.com:3478,stun:stun2.l.google.com:19302,stun:stun3.l.google.com:19302,stun:stun.gmx.de:3478,stun:stun.gmx.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
+```
 
 - Bridge: [TriplebitSnowflake1](https://metrics.torproject.org/rs.html#details/4EF1E26841B69156F804CE616A086E6E40D996F2)
 - Bridge: [TriplebitSnowflake2](https://metrics.torproject.org/rs.html#details/00B2069390A9D67F9F23581E2B99F59FCA08D96B)
