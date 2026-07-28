@@ -5,7 +5,7 @@ hide:
 
 # Transparency
 
-Date: 2025-07-17
+Date: 2026-07-28
 
 This is Triplebit's transparency report for the period of 2024-08-16 through 2025-07-17.  
 Triplebit will update this report at least every 6 months (beginning 2024-12-31).
@@ -47,4 +47,4 @@ As allowed by law, any related communications to events noted above will be publ
 
 Changes to this page are tracked with SSH signed Git commits (click the "Verified" badge next to the [page changelog](https://github.com/triplebit/triplebit.org/commits/main/docs/transparency.md) for details). The SSH key belongs to Jonah Aragon and its fingerprint is `oJSBSFgpWl4g+IwjL96Ya8ocGfI7r6VKnQw+257pZZ0`.
 
-Triplebit operates our public infrastructure with maximum transparency in mind. If you have any questions about something on this page, or something missing from this page, please feel free to contact us.
+Triplebit Corporation operates our public infrastructure with maximum transparency in mind. If you have any questions about something on this page, or something missing from this page, please feel free to contact us.

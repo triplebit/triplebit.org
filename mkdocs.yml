@@ -3,6 +3,8 @@ site_description: >-
   Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide.
 site_url: https://www.triplebit.org/
 edit_uri: https://github.com/triplebit/triplebit.org/edit/main/docs/
+copyright: >-
+  &copy; Triplebit Corporation, a Delaware 501(c)(3) public charity (EIN 42-3053859)
 
 theme:
   name: material
@@ -23,6 +25,7 @@ theme:
     - content.code.select
 
 extra:
+  generator: false
   social:
     - icon: fontawesome/brands/mastodon 
       link: https://mstdn.plus/@triplebit
@@ -62,7 +65,6 @@ nav:
   - About:
     - index.md
     - transparency.md
-    - history.md
     - donate.md
   - Services:
     - services.md
