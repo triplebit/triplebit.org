@@ -17,10 +17,10 @@ social:
     "mainEntity" : {
       "@context" : "https://schema.org",
       "@type" : "NGO",
-      "name" : "Triplebit",
+      "name" : "Triplebit Corporation",
       "logo" : "https://www.triplebit.org/public/triplebit-social-pic.png",
       "url" : "https://www.triplebit.org",
-      "description" : "Triplebit is a U.S. nonprofit organization and transit internet service provider based in Minneapolis, MN.",
+      "description" : "Triplebit is a 501(c)(3) public charity and transit internet service provider.",
       "disambiguatingDescription" : "Nonprofit internet service provider",
       "sameAs": [
         "https://mstdn.plus/@triplebit",
@@ -31,7 +31,7 @@ social:
   }
 </script>
 
-Founded in 2024, Triplebit is a U.S. nonprofit organization and transit internet service provider (ISP) based in Minneapolis, MN.
+Founded in 2024, Triplebit Corporation ("Triplebit") is a 501(c)(3) public charity and transit internet service provider (ISP) based in Delaware.
 
 Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/), Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.
 
@@ -83,3 +83,16 @@ To troubleshoot connectivity to/from our network, you can perform a traceroute o
   [Hurricane Electric]: /public/friends/hurricane-electric.webp
 
 </div>
+
+## Documents
+
+- [IRS Determination Letter](/public/documents/irs-determination.pdf)
+- [IRS Form 1023-EZ](/public/documents/irs-1023-ez.pdf)
+- [Delaware Certificate of Incorporation](/public/documents/certificate-of-incorporation.pdf)
+  
+Yearly Documents:
+
+- 2026: [IRS Form 5768](/public/documents/irs-2026-form-5768.pdf)
+- 2025: [Form 990-N](/public/documents/irs-2025-form-990n.pdf)
+
+[![2026 Candid Seal of Transparency](images/candid-seal-platinum-2026.svg){ width=128 height=128 }](https://app.candid.org/profile/16663599/triplebit-corporation/?pkId=aee92b4a-e0bc-427c-b5aa-e3750023eb8f&isActive=true)
