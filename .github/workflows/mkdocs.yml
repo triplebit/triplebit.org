@@ -18,17 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: true
           token: ${{ secrets.PAT }}
       - name: Install Python (pipenv)
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           cache: "pipenv"
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Install Python Dependencies
         run: |
           pip install pipenv
@@ -37,10 +37,10 @@ jobs:
       - name: Build Site
         run: pipenv run mkdocs build
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site/
-      - uses: hkdobrev/minio-deploy-action@v1
+      - uses: hkdobrev/minio-deploy-action@98438a5d45068824d87fc8938095ae86dabc05bd # v1.1.0
         with:
           endpoint: https://${{ vars.GARAGE_ENDPOINT }}
           bucket: ${{ vars.GARAGE_BUCKET }}
