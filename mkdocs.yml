@@ -64,6 +64,7 @@ watch:
 nav:
   - About:
     - index.md
+    - people.md
     - transparency.md
     - donate.md
   - Services:
