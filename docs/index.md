@@ -33,7 +33,31 @@ social:
 
 Founded in 2024, Triplebit Corporation ("Triplebit") is a 501(c)(3) public charity and transit internet service provider (ISP) based in Delaware.
 
-Our mission is to protect and uphold the rights to privacy, access to information, anonymity, and free speech. To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/), Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.
+## Mission
+
+Triplebit defends our First and Fourth Amendment rights in the United States by operating privacy-focused public benefit infrastructure, educating people on digital and financial privacy, promoting free, uncensored internet access for journalists and activists in the United States and globally, and contributing to scientific research in digital privacy fields.
+
+## Programs
+
+### Access
+
+**Triplebit Access** is a digital inclusion program serving as an uncensored entry point to the internet in the United States to individuals who lack internet connectivity, lack appropriate internet-connected devices, or who would grow their computer/internet access and safety through the use of our program's connectivity services.
+
+### Bridge
+
+**Triplebit Bridge** is a collection of services that serve to bypass censorship and enable freedom of expression online. We envision a world where access and privacy are the defaults. We encourage you to read more about privacy at [privacyguides.org](https://www.privacyguides.org).
+
+### Core
+
+**Triplebit Core** is a collection of dedicated infrastructure services that support decentralized, privacy-focused, open-source projects including Tor, I2P, and Monero.
+
+### Enable
+
+**Triplebit Enable** is a program which provides IT services, infrastructure, and consulting to other 501(c)(3) non-profits in support of their missions.
+
+## Network
+
+To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/), Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.
 
 ![Map of Triplebit network locations](public/triplebit-map.webp)
 
@@ -43,20 +67,16 @@ We enhance network privacy by:
 - Peering directly with major content providers and content delivery networks, reducing middlemen ISPs
 - Homing our services on major Internet Exchanges
 
-Triplebit envisions a world where access and privacy are the defaults. We encourage you to read more about privacy at [privacyguides.org](https://www.privacyguides.org).
-
-## Status
-
-- Follow <a href="https://mstdn.plus/@triplebit" rel="me">@triplebit@mstdn.plus</a> on Mastodon
-- View Triplebit's Tor relays on Tor Project's [Relay Search](https://metrics.torproject.org/rs.html#search/as:AS401332)
-
-## Network
-
 Triplebit's [Autonomous System Number (ASN)](https://www.arin.net/resources/guide/asn/) is [401332](https://whois.arin.net/rest/asn/AS401332.html).
 
 - View Triplebit's live [BGP/peering status](https://bgp.tools/as/401332) on bgp.tools
 
 To troubleshoot connectivity to/from our network, you can perform a traceroute or ping from our network to any internet host via [this web portal](https://bgp.he.net/AS401332#_traceroute): Simply enter the IP/hostname you want to query, select `Probe #7395` from the list, and our [RIPE anchor](https://atlas.ripe.net/probes/7395) will query the host and return the results to you.
+
+## Status
+
+- Follow <a href="https://mstdn.plus/@triplebit" rel="me">@triplebit@mstdn.plus</a> on Mastodon
+- View Triplebit's Tor relays on Tor Project's [Relay Search](https://metrics.torproject.org/rs.html#search/as:AS401332)
 
 ## Friends
 
@@ -84,7 +104,15 @@ To troubleshoot connectivity to/from our network, you can perform a traceroute o
 
 </div>
 
-## Documents
+## Organization
+
+Triplebit Corporation  
+8 The Green  
+STE 15564  
+Dover, DE 19901  
+United States
+
+info@triplebit.org - (302) 599-3514
 
 - [IRS Determination Letter](/public/documents/irs-determination.pdf)
 - [IRS Form 1023-EZ](/public/documents/irs-1023-ez.pdf)
