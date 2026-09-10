@@ -37,6 +37,9 @@ Founded in 2024, Triplebit Corporation ("Triplebit") is a 501(c)(3) public chari
 
 Triplebit defends our First and Fourth Amendment rights in the United States by operating privacy-focused public benefit infrastructure, educating people on digital and financial privacy, promoting free, uncensored internet access for journalists and activists in the United States and globally, and contributing to scientific research in digital privacy fields.
 
+[Donate via Bank](https://www.every.org/triplebit?code=2eabf918#/donate/bank){ .md-button .md-button--primary }
+[Donate (Other)](donate.md){ .md-button }
+
 ## Programs
 
 ### Access
