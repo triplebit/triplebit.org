@@ -10,10 +10,10 @@ We are very happy to receive any donations, but we prefer these methods because 
 
 - [**Bank Transfer**](https://www.every.org/triplebit?code=02b20984#/donate/bank)
 - **Monero (XMR):** `8852xQVTkehdDJQew6ypLcQ52rkcSRZdu8thMqHAJdXjEAQE5o1hWMUYVtsq5bNLU3WK8NqdbtTfddR2Wc8wCi8s4jiq7JQ`
+- [**PayPal Giving Fund**](https://www.paypal.com/us/fundraiser/charity/6036345) (PayPal Account Required)
 - [**Donate with your Donor Advised Fund (DAF)**](https://www.every.org/triplebit?code=02b20984#/donate/daf)
 - [**Donate from your IRA**](https://www.every.org/triplebit?code=02b20984#/donate/ira)
 - [**Donate Stocks**](https://www.every.org/triplebit?code=02b20984#/donate/stocks)
-- [**PayPal Giving Fund**](https://www.paypal.com/us/fundraiser/charity/6036345)] (PayPal Account Required)
 
 ## Other Methods
 
@@ -21,9 +21,9 @@ Fees on the following donation methods remain modest, and we are beyond grateful
 
 - [Credit/Debit Card](https://www.every.org/triplebit?code=24461ee9#/donate/card)
 - [Most Cryptocurrency (Tax Deductible)](https://www.every.org/triplebit?code=24461ee9#/donate/crypto)
-- [Most Cryptocurrency (via Decentralized Exchange, no receipts will be issued)](https://trocador.app/anonpay/?ticker_to=xmr&network_to=Mainnet&address=8852xQVTkehdDJQew6ypLcQ52rkcSRZdu8thMqHAJdXjEAQE5o1hWMUYVtsq5bNLU3WK8NqdbtTfddR2Wc8wCi8s4jiq7JQ&donation=True&simple_mode=True&name=Triplebit&email=donations@triplebit.org&bgcolor=00000000)
+- [Any Cryptocurrency (via Decentralized Exchange, no receipts will be issued)](https://trocador.app/anonpay/?ticker_to=xmr&network_to=Mainnet&address=8852xQVTkehdDJQew6ypLcQ52rkcSRZdu8thMqHAJdXjEAQE5o1hWMUYVtsq5bNLU3WK8NqdbtTfddR2Wc8wCi8s4jiq7JQ&donation=True&simple_mode=True&name=Triplebit&email=donations@triplebit.org&bgcolor=00000000)
+- [Venmo](https://venmo.com/u/triplebit)
 - [PayPal](https://www.every.org/triplebit?code=24461ee9#/donate/paypal) (No Account Required)
-- [Venmo](https://www.every.org/triplebit?code=24461ee9#/donate/venmo)
 
 ---
 
