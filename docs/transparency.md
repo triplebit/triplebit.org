@@ -5,9 +5,9 @@ hide:
 
 # Transparency
 
-Date: 2026-07-28
+Date: 2026-11-04
 
-This is Triplebit's transparency report for the period of 2024-08-16 through 2025-07-17.  
+This is Triplebit's transparency report for the period of 2024-08-16 through 2026-11-04.  
 Triplebit will update this report at least every 6 months (beginning 2024-12-31).
 
 Triplebit is not being prevented from disclosing information.  
