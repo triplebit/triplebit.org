@@ -1,8 +1,8 @@
 ---
+layout: base.njk
+title: Monero Remote Node
 description: Triplebit operates a public Monero remote node accessible via both the clearnet internet and the Tor network.
 ---
-
-# Monero Remote Node
 
 Triplebit operates a public **Monero remote node** accessible via both the clearnet internet and the Tor network:
 
@@ -16,7 +16,7 @@ You can connect to our node via your wallet by simply entering our domain (`xmr.
 
 You *should* connect with TLS over port `443` or connect using the `.onion` address via the Tor network, as both of these options provide additional security/encryption between yourself and our node.
 
-![Screenshot of Monero Wallet settings showing xmr.triplebit.org entered in the Address box, and 443 entered in the port box, with other settings left as their defaults](images/monero-wallet.png){ loading=lazy }
+![Screenshot of Monero Wallet settings showing xmr.triplebit.org entered in the Address box, and 443 entered in the port box, with other settings left as their defaults](../images/monero-wallet.png){loading=lazy}
 
 Our node supports CORS (wildcard `Access-Control-Allow-Origin` header), meaning it can be used with web/javascript/wasm-based wallets. We will support I2P by the end of 2024.
 
@@ -28,7 +28,7 @@ However, using a public remote node is generally a privacy risk. The Monero node
 
 <mark>If you are concerned about your IP being revealed you should always connect via the Tor network.</mark> While Triplebit does not collect this information, you should not take our word for it (as a general rule to apply to any service provider in your life).
 
-Triplebit currently operates its node at the lowest possible [logging level](https://getmonero.dev/interacting/monerod.html#logging), and it is subject to our [transparency reports](transparency.md) published on this website. We log to ensure everything is operating smoothly and to diagnose issues, but when our node has been online without incident for a substantial amount of time we will disable logging completely.
+Triplebit currently operates its node at the lowest possible [logging level](https://getmonero.dev/interacting/monerod.html#logging), and it is subject to our [transparency reports](../transparency/) published on this website. We log to ensure everything is operating smoothly and to diagnose issues, but when our node has been online without incident for a substantial amount of time we will disable logging completely.
 
 ## IPv6
 

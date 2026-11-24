@@ -1,4 +1,8 @@
-# Privacy Notice
+---
+layout: base.njk
+title: Privacy Notice
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
+---
 
 Triplebit is a nonprofit corporation in Minnesota, USA. Triplebit takes your data privacy extremely seriously.
 

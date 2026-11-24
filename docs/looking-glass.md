@@ -1,8 +1,12 @@
-# Looking Glass
+---
+layout: base.njk
+title: Looking Glass
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
+---
 
 We provide a direct feed of our BGP routes to bgp.tools, where you can see a live list of our [current connections](https://bgp.tools/as/401332#connectivity) and submit queries to inspect our routes. We filter RPKI ROA Invalids on our router.
 
-[bgp.tools Looking Glass](https://bgp.tools/lg/401332){ .md-button }
+[bgp.tools Looking Glass](https://bgp.tools/lg/401332){.button .outline}
 
 ---
 
@@ -14,11 +18,11 @@ Additionally, we are a RIPE Atlas anchor operator ([probe 7395](https://atlas.ri
 
 You can use this anchor to query any host you'd like from our network using credits on your RIPE Atlas account.
 
-[Access RIPE Atlas](https://atlas.ripe.net/probes/7395/#tab-general){ .md-button }
+[Access RIPE Atlas](https://atlas.ripe.net/probes/7395/#tab-general){.button .outline}
 
 If you do not have RIPE Atlas credits, you can perform a free traceroute/ping/DNS lookup from our anchor via Hurricane Electric's portal. Select RIPE Probe #7395 from the list to perform a test from our network.
 
-[HE.net Traceroute from AS401332](https://bgp.he.net/AS401332#_traceroute){ .md-button }
+[HE.net Traceroute from AS401332](https://bgp.he.net/AS401332#_traceroute){.button .outline}
 
 ---
 

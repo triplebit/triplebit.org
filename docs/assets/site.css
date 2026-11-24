@@ -1,0 +1,198 @@
+/* Triplebit website. Started from the Larvatus website's src/assets/site.css (../ChatGPT/maskedemail-website), whose
+   look it shares. The blocks marked SHARED are copied from it, verbatim apart from color values, which here all come
+   from the tokens below; keep them in step with Larvatus by hand, as there is no shared package. The blocks marked
+   TRIPLEBIT are this site's own. */
+
+/* SHARED (token names). Every color on the site is one of these, so a palette is one block per theme.
+   Palette A, "Black", from the MkDocs site: a black band, red links, cyan as a sparing accent. */
+:root {
+  color-scheme: light dark;
+  --page: #fafafa; --surface: #ffffff; --subtle: #ececec; --text: #111111; --muted: #555555;
+  --line: #e2e2e2; --accent: #cc0000; --accent-hover: #a80000; --ink: #cc0000;
+  /* Triplebit's tokens for what Larvatus sets by hand: the band (its text, the middle bar of the nav mark, a rule under
+     it for a band as light as the page, and its focus ring and current-link underline), text on the accent, the light
+     button on the band (the Donate button), the outline button, the focus ring and list markers (cyan where it has
+     contrast), highlighted text, the bars of the footer mark, and the surface behind pictures made for a white page
+     (white in the dark theme). The theme-color meta tags in base.njk repeat --band. */
+  --band: #000000; --band-text: #ffffff; --band-mark: #ffffff; --band-line: transparent; --band-focus: #00ffff; --on-accent: #ffffff;
+  --light-bg: #ffffff; --light-text: #cc0000; --light-hover: #ffe8e8; --light-shadow: none;
+  --outline-hover: #ececec; --focus: #008b8b; --marker: #008b8b; --highlight: #fff3a3;
+  --logo-back: #000000; --logo-front: #ffffff; --picture-surface: transparent;
+  --wrap: 1200px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #131313; --surface: #1f1f21; --subtle: #2a2a2d; --text: #f4f4f4; --muted: #b5b5b8;
+    --line: #2c2c30; --ink: #ff6b6b;
+    --outline-hover: #2a2a2d; --focus: #00ffff; --marker: #00ffff; --highlight: #5c4d00;
+    --logo-back: #ffffff; --logo-front: #000000; --picture-surface: #ffffff;
+  }
+}
+
+/* SHARED. Montserrat, served from here. The build copies the Latin subset of each weight and style in use from
+   @fontsource/montserrat into assets/fonts/ (see eleventy.config.js); every character on the site is in that subset. */
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(fonts/montserrat-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 400; font-display: swap;
+  src: url(fonts/montserrat-latin-400-italic.woff2) format("woff2"); }
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 500; font-display: swap;
+  src: url(fonts/montserrat-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 600; font-display: swap;
+  src: url(fonts/montserrat-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: Montserrat; font-style: normal; font-weight: 700; font-display: swap;
+  src: url(fonts/montserrat-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: Montserrat; font-style: italic; font-weight: 900; font-display: swap;
+  src: url(fonts/montserrat-latin-900-italic.woff2) format("woff2"); }
+
+/* SHARED. Base elements. */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--page); color: var(--text); font: 17px/1.55 Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: var(--ink); text-underline-offset: 3px; }
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+h1, h2, h3 { font-weight: 700; line-height: 1.08; letter-spacing: -.022em; text-wrap: balance; }
+h1 { font-size: clamp(2.5rem, 5.4vw, 4rem); }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.75rem); }
+h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+/* SHARED. Buttons. Larvatus's .ghost variant is left out. */
+.button { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 12px; background: var(--accent); color: var(--on-accent);
+  font-weight: 600; text-decoration: none; transition: background .15s, transform .15s; }
+.button:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.button.light { background: var(--light-bg); color: var(--light-text); box-shadow: var(--light-shadow); }
+.button.light:hover { background: var(--light-hover); }
+/* TRIPLEBIT. The quieter button beside a filled one, for MkDocs's plain .md-button. */
+.button.outline { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.button.outline:hover { background: var(--outline-hover); }
+
+/* SHARED. The band: navigation and the page title. Larvatus's gradient and watermark are left out. */
+.band { position: relative; overflow: hidden; color: var(--band-text); background: var(--band); }
+/* TRIPLEBIT. A rule under the band, drawn inside it so it takes no space; transparent unless a palette needs it. */
+.band { box-shadow: inset 0 -1px var(--band-line); }
+.band a { color: inherit; }
+.band :focus-visible { outline-color: var(--band-focus); }
+.nav { position: relative; display: flex; align-items: center; gap: 28px; padding-top: 22px; padding-bottom: 22px; }
+.lockup { display: flex; align-items: center; gap: 11px; margin-right: auto; font-size: 1.35rem; font-weight: 700; letter-spacing: -.012em; text-decoration: none; }
+.lockup svg { width: 36px; height: 36px; }
+.nav a:not(.lockup):not(.button) { font-size: .95rem; font-weight: 500; text-decoration: none; opacity: .92; }
+.nav a:not(.lockup):not(.button):hover { opacity: 1; text-decoration: underline; }
+.nav .button { padding: 9px 16px; border-radius: 10px; font-size: .95rem; }
+.nav a { white-space: nowrap; }
+@media (max-width: 860px) { .nav .hide { display: none; } }
+
+/* TRIPLEBIT. The nav lockup is set like the footer's (see the comment there), with the mark at 36px. The mark has no
+   backing square on the dark band, so its viewBox is cut to the bars' width (10 to 54 of 64) and the bars start at the
+   edge of the page's column; heights and the vertical arithmetic are unchanged. */
+.nav .lockup { --mark: 36px; align-items: baseline; font-size: calc(var(--mark) * 22 / 64 / .7); font-weight: 900; font-style: italic;
+  letter-spacing: 0; line-height: 1; text-transform: uppercase; }
+.nav .lockup svg { display: inline-block; width: calc(var(--mark) * 44 / 64); height: var(--mark); vertical-align: calc(var(--mark) * -21 / 64); }
+.tb-band { fill: var(--band-mark); }
+/* The section a page belongs to, marked quietly in the header. */
+.nav a[aria-current]:not(.lockup):not(.button) { opacity: 1; text-decoration: underline; text-decoration-color: var(--band-focus);
+  text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
+/* SHARED. The footer. */
+footer { padding: 40px 0 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+/* The footer lockup is set so that the T of Triplebit is exactly as tall as the middle bar of the mark and sits level
+   with it. In the mark's 64-unit square the bar runs from 21 to 43, so it is 22/64 of the mark's size; Montserrat's
+   capitals are 0.7em tall. The font size follows from those two, and the mark is lowered until the bar's foot (21/64
+   above the mark's own) rests on the text's baseline. At 2rem the bar and the T are both 11px. */
+footer .lockup { --mark: 2rem; align-items: baseline; color: var(--text); font-size: calc(var(--mark) * 22 / 64 / .7); font-weight: 900;
+  font-style: italic; letter-spacing: 0; line-height: 1; }
+footer .lockup svg { display: inline-block; width: var(--mark); height: var(--mark); vertical-align: calc(var(--mark) * -21 / 64); }
+/* The footer lockup is Triplebit's mark, linked to its site, beside a line of text. The mark is white bars on black,
+   and black bars on white in the dark theme (the swap is in the dark tokens). */
+.tb-back { fill: var(--logo-back); }
+.tb-front { fill: var(--logo-front); }
+footer nav a { color: var(--muted); text-decoration: none; }
+footer nav a:hover { color: var(--ink); text-decoration: underline; }
+/* TRIPLEBIT. Here the text beside the mark is the name, in capitals like the nav lockup. */
+footer .lockup span { text-transform: uppercase; }
+/* TRIPLEBIT. Larvatus's footer is one row (lockup, nav, small print); this one is columns, by the owner's choice
+   (2026-11-24), so Larvatus's footer .wrap, footer nav and footer p rules are left out. The lockup keeps exactly the
+   place it has on Larvatus: top left of .wrap, under the same padding. Beside it, a column per nav section; the columns
+   fill the space and wrap onto further rows, so more sections need no change here. On a phone the lockup and small
+   print come first, full width, and the sections follow two across. */
+footer .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px 48px; align-items: start; }
+footer .brand p { margin-top: 16px; max-width: 26em; }
+footer nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 28px 32px; }
+footer h2 { margin-bottom: 10px; color: var(--text); font-size: .9rem; font-weight: 600; letter-spacing: 0; line-height: 1.4; }
+footer ul { padding: 0; list-style: none; }
+footer li + li { margin-top: 6px; }
+footer nav a[aria-current] { color: var(--text); }
+@media (min-width: 761px) {
+  footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  footer nav { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+}
+
+/* SHARED. The title band and the page text. */
+.title { position: relative; padding-top: 40px; padding-bottom: 64px; }
+.title h1 { font-size: clamp(2.2rem, 4.6vw, 3.25rem); }
+.title .date { margin-top: 14px; font-size: .95rem; color: var(--band-text); opacity: .85; }
+.prose { max-width: 760px; padding-top: 56px; padding-bottom: 96px; }
+.prose h2 { margin: 48px 0 12px; font-size: 1.45rem; letter-spacing: -.016em; line-height: 1.2; }
+.prose p, .prose ul { margin: 12px 0; }
+.prose ul { padding-left: 1.25rem; }
+.prose li { margin: 10px 0; }
+.prose li::marker { color: var(--marker); }
+.prose code { padding: 1px 5px; border-radius: 6px; background: var(--subtle); font: .86em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+
+/* TRIPLEBIT. The pages of the current section, under the heading. Unlike the header's links they stay on phones,
+   wrapping onto more lines rather than scrolling sideways. */
+.sections { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 22px; font-size: .95rem; font-weight: 500; }
+.sections a { text-decoration: none; opacity: .8; }
+.sections a:hover { opacity: 1; text-decoration: underline; }
+.sections a[aria-current] { opacity: 1; text-decoration: underline; text-decoration-color: var(--band-focus); text-decoration-thickness: 2px;
+  text-underline-offset: 6px; }
+
+/* TRIPLEBIT. What the MkDocs pages use beyond Larvatus's prose. */
+.prose h2 { clear: both; }
+.prose h3 { margin: 32px 0 10px; }
+.prose ol { margin: 12px 0; padding-left: 1.5rem; }
+.prose hr { margin: 40px 0; border: 0; border-top: 1px solid var(--line); }
+.prose mark { padding: 0 2px; background: var(--highlight); color: inherit; }
+/* Code blocks. The bridge lines are very long, so a block scrolls sideways inside itself, never the page. */
+.prose pre { margin: 16px 0; padding: 14px 18px; overflow-x: auto; border-radius: 12px; background: var(--subtle);
+  font: .8rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.prose pre code { padding: 0; border-radius: 0; background: none; font: inherit; overflow-wrap: normal; }
+/* The footnote after a "(1)" in the text (MkDocs showed it as a pop-up). */
+.prose ol.note { color: var(--muted); font-size: .88rem; }
+.prose ol.note li { margin: 6px 0; }
+/* An image beside the text on wide screens, above it on phones. */
+.prose .float { float: right; width: 40%; max-width: 256px; margin: 4px 0 16px 28px; }
+@media (max-width: 600px) { .prose .float { float: none; width: 100%; margin: 16px auto; } }
+/* A row of buttons wraps on a phone. */
+.prose p:has(> .button) { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+/* Pictures made for a white page, on a white surface in the dark theme: friends' logos, and the network map, whose
+   legend is dark text on a transparent background. (The bridge QR codes carry their own white.) */
+.prose .friends { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px 36px; margin: 24px 0;
+  padding: 24px; border-radius: 16px; background: var(--picture-surface); }
+.prose .on-light { padding: 12px; border-radius: 16px; background: var(--picture-surface); }
+.prose .friends img { width: auto; height: 3.25rem; }
+
+/* TRIPLEBIT. The projects page: a card per project, shaped like the donation card at the foot of the Larvatus home
+   page (its .give .band: radius, padding, heading and text sizes, the light button), in the project's own colors with
+   its mark faintly behind. The colors come from the project's class, not from this site's palette, so the card looks
+   the same in every theme and palette. A card sets --card-from, --card and --card-to (its gradient), --card-ink (the
+   light button's text), --card-hover (that button's hover) and --card-shadow (the button's shadow, as r g b). */
+.projects { display: grid; gap: 24px; }
+.project { position: relative; overflow: hidden; padding: 56px; border-radius: 28px; color: #fff;
+  background: radial-gradient(circle at 18% 12%, var(--card-from), var(--card) 45%, var(--card-to)); }
+.project .watermark { position: absolute; pointer-events: none; color: rgb(255 255 255 / .07); }
+.project h2 { position: relative; display: flex; align-items: center; gap: 14px; margin: 0; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+  letter-spacing: -.012em; line-height: 1.08; }
+.project h2 svg { flex: none; width: 46px; height: 46px; }
+.project .sub { position: relative; max-width: 40em; margin: 20px 0 0; font-size: 1.05rem; line-height: 1.5; color: #fff; text-wrap: pretty; }
+.project .actions { position: relative; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.project .button.light { background: #fff; color: var(--card-ink); box-shadow: 0 10px 28px rgb(var(--card-shadow) / .28); }
+.project .button.light:hover { background: var(--card-hover); }
+.project :focus-visible { outline-color: #fff; }
+@media (max-width: 620px) { .project { padding: 36px 24px; } }
+/* Larvatus: its band and button colors, from its site.css. */
+.project.larvatus { --card-from: #e43a62; --card: #dd2b55; --card-to: #c4214a; --card-ink: #c4214a; --card-hover: #fff3f5; --card-shadow: 80 0 20; }

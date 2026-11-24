@@ -1,9 +1,8 @@
 ---
-hide:
-  - toc
+layout: base.njk
+title: Transparency
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
 ---
-
-# Transparency
 
 Date: 2026-11-04
 

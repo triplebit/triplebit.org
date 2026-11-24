@@ -1,8 +1,8 @@
 ---
+layout: base.njk
+title: Tor Bridges
 description: Triplebit operates high performance, unfiltered, and high capacity bridges on the Tor network.
 ---
-
-# Tor Bridges
 
 Triplebit operates high performance, unfiltered, and high capacity bridges on the Tor network. We are compliant with [Tor Proposal 326](https://spec.torproject.org/proposals/326-tor-relay-well-known-uri-rfc8615.html).
 
@@ -10,7 +10,7 @@ Triplebit's goal is to enable IPv6 connectivity and promote IPv6 adoption across
 
 ## Manual Bridges
 
-![](public/public-bridges.png){ align=right width=40% }
+![](../public/public-bridges.png){.float}
 
 Many of our bridges are only distributed via private methods, such as bridge distribution methods operated by the Tor Project, or [private bridges](#private-bridges) we operate for NGOs and other groups, so that they are not easily blocked. However, if you would like to use Triplebit-operated bridges in place of your guard node and are not experiencing censorship yourself, we operate **5** public bridges in two locations for you to choose from.
 
@@ -31,9 +31,9 @@ webtunnel 10.0.2.3:443 B094B41CA85C7A61FCBC11E671AA6D31737F9FB4 url=https://cdn-
 ```
 
 Near **Minneapolis, USA**: Via Cloudflare! (1)
-{ .annotate }
 
 1. This WebTunnel bridge in Minneapolis is behind Cloudflare's IP addresses and network, which can be worse for performance and privacy, but potentially better for circumventing censorship. Of course, Tor traffic is always end-to-end encrypted.
+{.note}
 
 ```
 webtunnel 10.0.2.4:443 E4D6ECD7C758A22854A5BCC50B05EA901F4CA46E url=https://mastodon.neat.computer/shi0aiphohL1ooca
@@ -43,16 +43,16 @@ Using a trustworthy bridge can be preferable to using a standard guard node, bec
 
 ### Private Snowflake (Beta)
 
-![](public/public-snowflake.png){ align=right width=40% }
+![](../public/public-snowflake.png){.float}
 
 Triplebit operates a private Snowflake broker, completely independently of Tor Project's Snowflake infrastructure. Our Snowflake proxies can only be used by adding our custom Snowflake bridge lines to your Tor Browser or `torrc` configuration.
 
 One benefit of our private broker is higher performance. We are only running dedicated proxies on high-speed networks, whereas the public Snowflake network is run by the public on all manner of devices and browser extensions. Of course, the flip side of this is that we lack the high IP diversity which makes the traditional Snowflake network difficult to block.
 
 Via **Google Amp Cache** (Recommended): (1)
-{ .annotate }
 
 1. Google Amp is only used to locate a Snowflake proxy. Your actual Tor traffic will be forwarded directly to a private Snowflake proxy.
+{.note}
 
 ```
 snowflake 10.0.3.1:443 53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 fingerprint=53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 url=https://snowflake-broker.triplebit.dev/ ampcache=https://cdn.ampproject.org/ front=www.google.com ice=stun:stun.l.google.com:19302,stun:stun.ooma.com:3478,stun:stun2.l.google.com:19302,stun:stun3.l.google.com:19302,stun:stun.gmx.de:3478,stun:stun.gmx.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
@@ -60,9 +60,9 @@ snowflake 10.0.3.2:443 A478B32B16FC1F371677F9F41D9C5272B8EBB0F7 fingerprint=A478
 ```
 
 Via **Bunny.net**: (1)
-{ .annotate }
 
 1. Bunny.net is only used to locate a Snowflake proxy. Your actual Tor traffic will be forwarded directly to a private Snowflake proxy.
+{.note}
 
 ```
 snowflake 10.0.3.1:80 53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 fingerprint=53B65F538F5E9A5FA6DFE5D75C78CB66C5515EF7 url=https://triplebit-snowflake-broker.b-cdn.net/ fronts=www.bunny.net,fonts.bunny.net ice=stun:stun.antisip.com:3478,stun:stun.epygi.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.mixvoip.com:3478,stun:stun.nextcloud.com:3478,stun:stun.bethesda.net:3478,stun:stun.nextcloud.com:443 utls-imitate=hellorandomizedalpn
@@ -91,10 +91,7 @@ Triplebit runs **over 40** WebTunnel and obfs4 bridges in multiple locations and
 
 We currently operate the following Tor bridges (by *hashed* fingerprint):
 
-```
---8<--
-docs/.well-known/tor-relay/hashed-bridge-rsa-fingerprint.txt
---8<--
+```include .well-known/tor-relay/hashed-bridge-rsa-fingerprint.txt
 ```
 
 However, it may be more useful for you to browse [this interactive list](https://metrics.torproject.org/rs.html#search/Triplebit%20type:bridge%20) of our bridges for more information. **Note** that this list is based on nickname and not validated, so other operators could impersonate us and be listed. You should cross-reference list entries with the hashed fingerprints listed above if you need to confirm the validity of a Triplebit Tor bridge.

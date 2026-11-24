@@ -1,0 +1,88 @@
+{#- Started from the Larvatus website's src/_includes/base.njk (../ChatGPT/maskedemail-website). The head, the header band
+    with its nav, the title band and the footer are shared with it in shape and must be kept in step by hand: there is
+    no shared package. Triplebit's own parts are the section nav (from _data/nav.json, which also feeds the header and
+    footer), the section row under the heading and the home page's JSON-LD.
+
+    Paths are relative ("" at the root, "../" a folder down), as in Larvatus, except on 404.html, which the server
+    returns at any depth, so its paths start at the root. -#}
+{%- set root = "/" if page.url == "/404.html" else page.url | root -%}
+{%- set section = nav | section(page.url) -%}
+{%- macro href(url) -%}{{ "./" if url == page.url else (root + url.slice(1)) or "./" }}{%- endmacro -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ (pageTitle or title + " · Triplebit") | safe }}</title>
+<meta name="description" content="{{ description | safe }}">
+{#- The band color in each theme, --band in site.css. A meta tag cannot read a CSS custom property, so change these
+    with the palette. #}
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="{{ root }}public/triplebit-logo-square.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{{ root }}assets/site.css">
+{% if page.url == "/" %}{% include "jsonld.html" %}{% endif -%}
+</head>
+<body>
+
+<header class="band">
+  <nav class="wrap nav" aria-label="Main">
+    {#- Triplebit's mark without its backing square and with a white middle bar, as on the dark band. Its viewBox is cut
+        to the bars' width (see .nav .lockup in site.css). The svg sits in a span so that, as in the footer, it lines up
+        with the text by vertical-align. #}
+    <a class="lockup" href="{{ href('/') }}"><span><svg viewBox="10 0 44 64" aria-hidden="true"><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-band"/></g></g></svg></span><span>Triplebit</span></a>
+    {%- for s in nav %}
+    {#- Each section links to its first page and is marked while one of its pages is open. #}
+    <a class="hide" href="{{ href(s.pages[0].url) }}"{% if s == section %} aria-current="{{ 'page' if s.pages[0].url == page.url else 'true' }}"{% endif %}>{{ s.label }}</a>
+    {%- endfor %}
+    <a class="button light" href="{{ href('/donate/') }}">Donate</a>
+  </nav>
+{% block band %}
+  <div class="wrap title">
+    {#- The heading's id is the one MkDocs gave it, so old #links still land; pages whose MkDocs heading had none set
+        titleAnchor: false. #}
+    <h1{% if titleAnchor != false %} id="{{ title | headingId }}"{% endif %}>{{ title }}</h1>
+    {%- if subtitle %}
+    <p class="date">{{ subtitle }}</p>
+    {%- endif %}
+    {%- if section and section.pages.length > 1 %}
+    {#- The pages of this section. The header's section links hide on phones; this row stays. #}
+    <nav class="sections" aria-label="{{ section.label }}">
+      {%- for p in section.pages %}
+      <a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a>
+      {%- endfor %}
+    </nav>
+    {%- endif %}
+  </div>
+{% endblock %}
+</header>
+
+{% block main %}
+<main class="wrap prose">
+{{ content | safe }}</main>
+{% endblock %}
+
+<footer>
+  <div class="wrap">
+    {#- The footer is columns, by the owner's choice (2026-11-24), where Larvatus's is one row: the lockup with the
+        small print under it, then a column for each nav section. The lockup sits where it does on Larvatus. #}
+    <div class="brand">
+      <div class="lockup"><a href="{{ href('/') }}" aria-label="Triplebit"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="tb-back" width="64" height="64" rx="15"/><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-front"/></g></g></svg></a><span>Triplebit</span></div>
+      <p>&copy; Triplebit Corporation, a Delaware 501(c)(3) public charity (EIN 42-3053859)</p>
+    </div>
+    <nav aria-label="Footer">
+      {%- for s in nav %}
+      <div>
+        <h2>{{ s.label }}</h2>
+        <ul>
+          {%- for p in s.pages %}
+          <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,35 +1,11 @@
 ---
-social:
-  cards_layout: default/only/image
-  cards_layout_options:
-    background_image: theme/public/globe-cover.svg
+layout: base.njk
+# The MkDocs home heading was the logo image, with the id "_1"; nothing links to that, so this heading has no id.
+titleAnchor: false
+title: Triplebit
+pageTitle: Triplebit
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
 ---
-
-# ![AS401332](public/triplebit-logo.svg "Triplebit"){ width=70% .center }
-
-<script type="application/ld+json">
-  {
-    "@context" : "https://schema.org",
-    "@type" : "WebSite",
-    "name" : "Triplebit (AS 401332)",
-    "alternateName" : "Triplebit",
-    "url" : "https://www.triplebit.org",
-    "mainEntity" : {
-      "@context" : "https://schema.org",
-      "@type" : "NGO",
-      "name" : "Triplebit Corporation",
-      "logo" : "https://www.triplebit.org/public/triplebit-social-pic.png",
-      "url" : "https://www.triplebit.org",
-      "description" : "Triplebit is a 501(c)(3) public charity and transit internet service provider.",
-      "disambiguatingDescription" : "Nonprofit internet service provider",
-      "sameAs": [
-        "https://mstdn.plus/@triplebit",
-        "https://twitter.com/TriplebitNET",
-        "https://www.peeringdb.com/net/37213"
-      ]
-    }
-  }
-</script>
 
 Founded in 2024, Triplebit Corporation ("Triplebit") is a 501(c)(3) public charity and transit internet service provider (ISP) based in Delaware.
 
@@ -37,8 +13,8 @@ Founded in 2024, Triplebit Corporation ("Triplebit") is a 501(c)(3) public chari
 
 Triplebit defends our First and Fourth Amendment rights in the United States by operating privacy-focused public benefit infrastructure, educating people on digital and financial privacy, promoting free, uncensored internet access for journalists and activists in the United States and globally, and contributing to scientific research in digital privacy fields.
 
-[Donate via Bank](https://www.every.org/triplebit?code=2eabf918#/donate/bank){ .md-button .md-button--primary }
-[Donate (Other)](donate.md){ .md-button }
+[Donate via Bank](https://www.every.org/triplebit?code=2eabf918#/donate/bank){.button}
+[Donate (Other)](donate/){.button .outline}
 
 ## Programs
 
@@ -62,7 +38,7 @@ Triplebit defends our First and Fourth Amendment rights in the United States by 
 
 To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the [Midwest Internet Cooperative Exchange](https://micemn.net/), Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.
 
-![Map of Triplebit network locations](public/triplebit-map.webp)
+![Map of Triplebit network locations](public/triplebit-map.webp){.on-light}
 
 We enhance network privacy by:
 
@@ -83,29 +59,17 @@ To troubleshoot connectivity to/from our network, you can perform a traceroute o
 
 ## Friends
 
-<div class="mdx-specialthanks" markdown>
-
-[![Privacy Guides]](https://www.privacyguides.org/en/){ rel=nofollow target=_blank title="Privacy Guides" }
-[![Ivy Cyber]](https://ivycyber.com){ rel=nofollow target=_blank title="Ivy Cyber" }
-[![Power Up Privacy]](https://powerupprivacy.com){ rel=nofollow target=_blank title="Power Up Privacy" }
-[![Unredacted]](https://unredacted.org){ rel=nofollow target=_blank title="Unredacted" }
-[![Kiwix]](https://kiwix.org){ rel=nofollow target=_blank title="Kiwix" }
-[![Tor Project]](https://www.torproject.org){ rel=nofollow target=_blank title="Tor Project" }
-[![Emerald Onion]](https://emeraldonion.org){ rel=nofollow target=_blank title="Emerald Onion" }
-[![Monero]](https://getmonero.org){ rel=nofollow target=_blank title="Monero" }
-[![Hurricane Electric]](https://he.net){ rel=nofollow target=_blank title="Hurricane Electric" }
-
-  [Privacy Guides]: /public/friends/privacy-guides.webp
-  [Ivy Cyber]: /public/friends/ivy-cyber.webp
-  [Power Up Privacy]: /public/friends/power-up-privacy.webp
-  [Unredacted]: /public/friends/unredacted.webp
-  [Kiwix]: /public/friends/kiwix.webp
-  [Tor Project]: /public/friends/tor-project.webp
-  [Emerald Onion]: /public/friends/emerald-onion.webp
-  [Monero]: /public/friends/monero.webp
-  [Hurricane Electric]: /public/friends/hurricane-electric.webp
-
-</div>
+<p class="friends">
+<a href="https://www.privacyguides.org/en/" rel="nofollow noopener" target="_blank" title="Privacy Guides"><img src="public/friends/privacy-guides.webp" alt="Privacy Guides"></a>
+<a href="https://ivycyber.com" rel="nofollow noopener" target="_blank" title="Ivy Cyber"><img src="public/friends/ivy-cyber.webp" alt="Ivy Cyber"></a>
+<img src="public/friends/power-up-privacy.webp" alt="Power Up Privacy">
+<a href="https://unredacted.org" rel="nofollow noopener" target="_blank" title="Unredacted"><img src="public/friends/unredacted.webp" alt="Unredacted"></a>
+<a href="https://kiwix.org" rel="nofollow noopener" target="_blank" title="Kiwix"><img src="public/friends/kiwix.webp" alt="Kiwix"></a>
+<a href="https://www.torproject.org" rel="nofollow noopener" target="_blank" title="Tor Project"><img src="public/friends/tor-project.webp" alt="Tor Project"></a>
+<a href="https://emeraldonion.org" rel="nofollow noopener" target="_blank" title="Emerald Onion"><img src="public/friends/emerald-onion.webp" alt="Emerald Onion"></a>
+<a href="https://getmonero.org" rel="nofollow noopener" target="_blank" title="Monero"><img src="public/friends/monero.webp" alt="Monero"></a>
+<a href="https://he.net" rel="nofollow noopener" target="_blank" title="Hurricane Electric"><img src="public/friends/hurricane-electric.webp" alt="Hurricane Electric"></a>
+</p>
 
 ## Organization
 
@@ -117,13 +81,13 @@ United States
 
 info@triplebit.org - (302) 599-3514
 
-- [IRS Determination Letter](/public/documents/irs-determination.pdf)
-- [IRS Form 1023-EZ](/public/documents/irs-1023-ez.pdf)
-- [Delaware Certificate of Incorporation](/public/documents/certificate-of-incorporation.pdf)
+- [IRS Determination Letter](public/documents/irs-determination.pdf)
+- [IRS Form 1023-EZ](public/documents/irs-1023-ez.pdf)
+- [Delaware Certificate of Incorporation](public/documents/certificate-of-incorporation.pdf)
   
 Yearly Documents:
 
-- 2026: [IRS Form 5768](/public/documents/irs-2026-form-5768.pdf)
-- 2025: [Form 990-N](/public/documents/irs-2025-form-990n.pdf)
+- 2026: [IRS Form 5768](public/documents/irs-2026-form-5768.pdf)
+- 2025: [Form 990-N](public/documents/irs-2025-form-990n.pdf)
 
-[![2026 Candid Seal of Transparency](images/candid-seal-platinum-2026.svg){ width=128 height=128 }](https://app.candid.org/profile/16663599/triplebit-corporation/?pkId=aee92b4a-e0bc-427c-b5aa-e3750023eb8f&isActive=true)
+[![2026 Candid Seal of Transparency](images/candid-seal-platinum-2026.svg){width=128 height=128}](https://app.candid.org/profile/16663599/triplebit-corporation/?pkId=aee92b4a-e0bc-427c-b5aa-e3750023eb8f&isActive=true)

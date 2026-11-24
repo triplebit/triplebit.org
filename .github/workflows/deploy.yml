@@ -1,0 +1,116 @@
+name: Deploy site to Garage
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never cancel a running deploy: one stopped halfway through `mc mirror --remove`
+# could leave the bucket half-synced. A newer push waits for it instead.
+concurrency:
+  group: deploy-garage
+  cancel-in-progress: false
+
+env:
+  # Pinned MinIO client. The community builds under dl.min.io/client/ now return
+  # 410 Gone, so this is the AIStor build (the same source the old
+  # hkdobrev/minio-deploy-action used), pinned via its archive URL and checksum.
+  MC_VERSION: RELEASE.2026-09-19T15-24-59Z
+  MC_SHA256: 83938eded435e7c28c397ece1dc590b2a79626dd9354aae2107060fec559ae2b
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          token: ${{ secrets.PAT }}
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      # `mc mirror --remove` deletes everything in the bucket that is not in _site/,
+      # so an empty or broken build must never reach the upload step.
+      - name: Check build output
+        run: |
+          set -euo pipefail
+          test -f _site/index.html || { echo "::error::_site/index.html is missing"; exit 1; }
+          count=$(find _site -type f | wc -l)
+          echo "_site contains $count files"
+          if [ "$count" -lt 20 ]; then
+            echo "::error::_site has only $count files; refusing to deploy"
+            exit 1
+          fi
+
+      - name: Install MinIO client
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/mc"
+          cd "$RUNNER_TEMP/mc"
+          curl -fsSL -o mc "https://dl.min.io/aistor/mc/release/linux-amd64/archive/mc.${MC_VERSION}"
+          echo "${MC_SHA256}  mc" | sha256sum -c -
+          chmod +x mc
+          echo "$RUNNER_TEMP/mc" >> "$GITHUB_PATH"
+
+      - name: Upload to Garage
+        env:
+          GARAGE_ENDPOINT: ${{ vars.GARAGE_ENDPOINT }}
+          GARAGE_BUCKET: ${{ vars.GARAGE_BUCKET }}
+          ACCESS_KEY: ${{ secrets.GARAGE_TRIPLEBIT_STATIC_HOMEPAGE_ID }}
+          SECRET_KEY: ${{ secrets.GARAGE_TRIPLEBIT_STATIC_HOMEPAGE_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$GARAGE_BUCKET" || { echo "::error::vars.GARAGE_BUCKET is empty"; exit 1; }
+          test -n "$GARAGE_ENDPOINT" || { echo "::error::vars.GARAGE_ENDPOINT is empty"; exit 1; }
+          mc alias set deploy "https://$GARAGE_ENDPOINT" "$ACCESS_KEY" "$SECRET_KEY"
+
+          # Sync the bucket root to the build. --remove deletes objects that are
+          # no longer in the build (approved by the owner). HTML, CSS and images
+          # are not fingerprinted, so keep them short-lived.
+          mc mirror --overwrite --remove \
+            --attr "Cache-Control=public, max-age=600" \
+            _site/ "deploy/$GARAGE_BUCKET/"
+
+          # Upload the fonts a second time with a long lifetime: mirror skips
+          # files it just uploaded, and font files only change when the pinned
+          # @fontsource/montserrat version does.
+          mc cp --recursive \
+            --attr "Cache-Control=public, max-age=2592000" \
+            _site/assets/fonts/ "deploy/$GARAGE_BUCKET/assets/fonts/"
+
+      - name: Verify live site
+        run: |
+          set -euo pipefail
+          site="https://www.triplebit.org"
+          font="$site/assets/fonts/montserrat-latin-400-normal.woff2"
+
+          status=$(curl -sS -o /dev/null -w '%{http_code}' "$site/")
+          echo "GET $site/ -> $status"
+          [ "$status" = "200" ] || { echo "::error::$site/ returned $status"; exit 1; }
+
+          font_headers=$(curl -sS -D - -o /dev/null "$font")
+          font_type=$(printf '%s' "$font_headers" | grep -i '^content-type:' | tr -d '\r' | cut -d' ' -f2- || true)
+          echo "GET $font -> Content-Type: $font_type"
+          [ "$font_type" = "font/woff2" ] || { echo "::error::$font served as '$font_type'"; exit 1; }
+
+          # Informational only: whether Garage's web endpoint passes Cache-Control
+          # through is not yet confirmed.
+          echo "Cache-Control on $site/:"
+          curl -sS -D - -o /dev/null "$site/" | grep -i '^cache-control:' || echo "  (none)"
+          echo "Cache-Control on font:"
+          printf '%s' "$font_headers" | grep -i '^cache-control:' || echo "  (none)"

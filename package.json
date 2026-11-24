@@ -1,0 +1,17 @@
+{
+  "name": "triplebit-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve --port=8766"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.8",
+    "@fontsource/montserrat": "5.3.0",
+    "markdown-it-attrs": "5.0.1"
+  }
+}

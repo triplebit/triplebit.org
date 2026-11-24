@@ -1,11 +1,14 @@
 ---
-layout: page
+layout: base.njk
+# The MkDocs page had no id on its heading, so this one has none either.
+titleAnchor: false
 title: People
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
 ---
 
 ## Jonah Aragon
 
-![Profile picture](images/jonah.webp){ align=right width=256 height=256 }
+![Profile picture](../images/jonah.webp){.float width=256 height=256}
 
 **President** & **Executive Director**
 

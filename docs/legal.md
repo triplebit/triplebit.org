@@ -1,5 +1,9 @@
 ---
+layout: base.njk
+# The MkDocs page had no id on its heading, so this one has none either.
+titleAnchor: false
 title: Legal FAQ
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
 ---
 
 ## What is Triplebit?

@@ -1,0 +1,30 @@
+[
+  {
+    "label": "About",
+    "pages": [
+      { "url": "/", "label": "About" },
+      { "url": "/people/", "label": "People" },
+      { "url": "/transparency/", "label": "Transparency" },
+      { "url": "/donate/", "label": "Donate" }
+    ]
+  },
+  {
+    "label": "Services",
+    "pages": [
+      { "url": "/services/", "label": "What We Do" },
+      { "url": "/relays/", "label": "Tor Relays" },
+      { "url": "/bridges/", "label": "Tor Bridges" },
+      { "url": "/legal/", "label": "Legal FAQ" },
+      { "url": "/monero/", "label": "Monero Remote Node" },
+      { "url": "/looking-glass/", "label": "Looking Glass" },
+      { "url": "/peering/", "label": "Peering" },
+      { "url": "/privacy/", "label": "Privacy Notice" }
+    ]
+  },
+  {
+    "label": "Projects",
+    "pages": [
+      { "url": "/projects/", "label": "Projects" }
+    ]
+  }
+]

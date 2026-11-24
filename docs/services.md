@@ -1,9 +1,13 @@
-# What We Do
+---
+layout: base.njk
+title: What We Do
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
+---
 
 Triplebit operates the following services as free/public-access utilities:
 
-- [Tor network router](relays.md)
-- [Monero remote node](monero.md)
+- [Tor network router](../relays/)
+- [Monero remote node](../monero/)
 - [RIPE Atlas anchor](https://atlas.ripe.net/probes/7395)
 - [bgp.tools Looking Glass](https://bgp.tools/lg/401332)
 - [Routinator RPKI Validation](https://routinator.triplebit.net/ui/)
