@@ -5,17 +5,23 @@ title: Triplebit
 pageTitle: Triplebit
 description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
 ---
-{#- The home page. It keeps the default title band and section row, and lays its main out across the full width: the
-    opening sentence as a lead, then a row per section with the heading on the left and the content on the right. The
+{#- The home page. Its band carries the opening sentence, and its main is laid out across the full width: a row per
+    section with the heading on the left and the content on the right. The
     text and heading ids are those of the Markdown page it replaced; the content uses the prose styles. -#}
 {% extends "base.njk" %}
+{#- On the home page the band carries the opening sentence instead of a visible heading; the h1 stays for the
+    document outline, hidden visually. #}
+{% block band %}
+  <div class="wrap title home-title">
+    <h1 class="visually-hidden">Triplebit</h1>
+    <p class="lead">Founded in 2024, Triplebit Corporation ("Triplebit") is a <span class="nobreak">501(c)(3)</span> public charity and transit internet service provider (ISP) based in Delaware.</p>
+  </div>
+{% endblock %}
 {% block main %}
 {#- Pins are drawn at their size in the image: core largest, coming soon smallest. #}
 {%- set pinScale = { core: 1.25, edge: 1, soon: 0.8 } %}
 <main class="home">
   <div class="wrap">
-    <p class="lead">Founded in 2024, Triplebit Corporation ("Triplebit") is a <span class="nobreak">501(c)(3)</span> public charity and transit internet service provider (ISP) based in Delaware.</p>
-
     <section class="row" aria-labelledby="mission">
       <h2 id="mission">Mission</h2>
       <div class="prose">
@@ -127,7 +133,6 @@ description: "Triplebit: A Minnesota, USA-based nonprofit internet service provi
           <ul>
             <li><a href="public/documents/irs-determination.pdf">IRS Determination Letter</a></li>
             <li><a href="public/documents/irs-1023-ez.pdf">IRS Form 1023-EZ</a></li>
-            <li><a href="public/documents/certificate-of-incorporation.pdf">Delaware Certificate of Incorporation</a></li>
           </ul>
           <p>Yearly Documents:</p>
           <ul>

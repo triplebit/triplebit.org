@@ -1,5 +1,5 @@
 {
-  "_comment": "The pins on the home page's network map, taken from the owner's image (docs/public/triplebit-map.webp) by tools/make-map.mjs. x and y are the pin's tip in the map's grid units (viewBox 0 0 200 99). kind is core (Core Location), edge (Edge Location) or soon (Coming Soon). links join core pins by their id with a dashed line. The places are not named here because the image does not name them.",
+  "_comment": "The pins on the home page's network map, taken from the owner's image (docs/public/triplebit-map.webp) by tools/make-map.mjs. x and y are the pin's tip in the map's grid units (viewBox 0 0 200 99). kind is core (Core Location), edge (Edge Location) or soon (Coming Soon). links join core pins by their id with a dashed line whose dashes flow from the first pin to the second; the three run in a loop: lower US, Europe, upper US, back to lower US. The places are not named here because the image does not name them.",
   "pins": [
     { "id": "core-1", "kind": "core", "x": 38.7, "y": 22.4 },
     { "id": "core-2", "kind": "core", "x": 32.4, "y": 30 },
@@ -16,5 +16,5 @@
     { "id": "soon-4", "kind": "soon", "x": 185.5, "y": 83 },
     { "id": "soon-5", "kind": "soon", "x": 195.6, "y": 89.2 }
   ],
-  "links": [["core-1", "core-2"], ["core-1", "core-3"], ["core-2", "core-3"]]
+  "links": [["core-2", "core-3"], ["core-3", "core-1"], ["core-1", "core-2"]]
 }

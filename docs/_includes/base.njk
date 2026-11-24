@@ -32,16 +32,17 @@
         with the text by vertical-align. #}
     <a class="lockup" href="{{ href('/') }}"><span><svg viewBox="10 0 44 64" aria-hidden="true"><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-band"/></g></g></svg></span><span>Triplebit</span></a>
     {#- Each section links to its first page and is marked while one of its pages is open. On wide screens a section
-        with more than one page lists them in a panel that opens on hover and on keyboard focus; on phones these links
+        with pages besides the one its link goes to lists them in a panel that opens on hover and on keyboard focus; on phones these links
         hide and the menu button below lists everything. All of it comes from _data/nav.json. #}
     {%- for s in nav %}
     {%- set current = (' aria-current="' + ('page' if s.pages[0].url == page.url else 'true') + '"') if s == section else '' %}
-    {%- if s.pages.length > 1 %}
+    {%- set pages = s | subpages %}
+    {%- if pages.length %}
     <div class="hide drop">
       <a href="{{ href(s.pages[0].url) }}"{{ current | safe }}>{{ s.label }}</a>
       <div class="panel">
         <ul>
-          {%- for p in s.pages %}
+          {%- for p in pages %}
           <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
           {%- endfor %}
         </ul>
@@ -55,15 +56,19 @@
       <summary aria-label="Menu"><svg class="open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></summary>
       <div class="menu-panel">
         {%- for s in nav %}
-        {#- --rows sizes the section for packing on phones: a heading, two rows per link plus one per wrapping label,
-            and a gap (site.css). #}
-        <div style="--rows: {{ s.pages.length * 2 + (s.pages | longLabels) + 2 }}">
-          <p>{{ s.label }}</p>
+        {%- set pages = s | subpages %}
+        {#- Each section's heading links to its first page, and its other pages are listed under it. --rows sizes the
+            section for packing on phones: a heading, two rows per link plus one per wrapping label, and a gap
+            (site.css). #}
+        <div style="--rows: {{ pages.length * 2 + (pages | longLabels) + 2 }}">
+          <p><a href="{{ href(s.pages[0].url) }}"{% if s.pages[0].url == page.url %} aria-current="page"{% endif %}>{{ s.label }}</a></p>
+          {%- if pages.length %}
           <ul>
-            {%- for p in s.pages %}
+            {%- for p in pages %}
             <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
             {%- endfor %}
           </ul>
+          {%- endif %}
         </div>
         {%- endfor %}
       </div>
@@ -94,20 +99,23 @@
         lockup sits where it does on Larvatus; on a phone the brand column moves below the sections (site.css). #}
     <div class="brand">
       <div class="lockup"><a href="{{ href('/') }}" aria-label="Triplebit"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="tb-back" width="64" height="64" rx="15"/><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-front"/></g></g></svg></a><span>Triplebit</span></div>
-      <p>&copy; Triplebit Corporation, a Delaware 501(c)(3) public charity (EIN 42-3053859)</p>
+      <p>A Delaware <span class="nobreak">501(c)(3)</span> public charity <span class="nobreak">(EIN 42-3053859)</span></p>
       <a class="seal" href="https://app.candid.org/profile/16663599/triplebit-corporation/?pkId=aee92b4a-e0bc-427c-b5aa-e3750023eb8f&amp;isActive=true"><img src="{{ root }}images/candid-seal-platinum-2026.svg" alt="2026 Candid Seal of Transparency" width="96" height="96"></a>
     </div>
     <nav aria-label="Footer">
       {%- for s in nav %}
-      {#- --rows sizes the section for packing on phones: a heading, a row per link plus one per wrapping label, and a
-          gap (site.css). #}
-      <div style="--rows: {{ s.pages.length + (s.pages | longLabels) + 2 }}">
-        <h2>{{ s.label }}</h2>
+      {%- set pages = s | subpages %}
+      {#- As in the menu, the heading links to the section's first page. --rows sizes the section for packing on
+          phones: a heading, a row per link plus one per wrapping label, and a gap (site.css). #}
+      <div style="--rows: {{ pages.length + (pages | longLabels) + 2 }}">
+        <h2><a href="{{ href(s.pages[0].url) }}"{% if s.pages[0].url == page.url %} aria-current="page"{% endif %}>{{ s.label }}</a></h2>
+        {%- if pages.length %}
         <ul>
-          {%- for p in s.pages %}
+          {%- for p in pages %}
           <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
           {%- endfor %}
         </ul>
+        {%- endif %}
       </div>
       {%- endfor %}
     </nav>

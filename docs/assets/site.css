@@ -8,17 +8,19 @@
 :root {
   color-scheme: light dark;
   --page: #fafafa; --surface: #ffffff; --subtle: #ececec; --text: #111111; --muted: #555555;
-  --line: #e2e2e2; --accent: #cc0000; --accent-hover: #a80000; --ink: #cc0000;
+  --line: #e2e2e2; --accent: #cc0000; --accent-hover: #dd0000; --ink: #cc0000;
   /* Triplebit's tokens for what Larvatus sets by hand: the band (its text, the middle bar of the nav mark, a rule under
      it for a band as light as the page, its focus ring and current-link underline, and the border of its menus), text on the accent, the light
-     button on the band (the Donate button), the outline button, the focus ring and list markers (cyan where it has
+     button on the band (the Donate button), the outline button's hover (a tint of the red), the filled button's shadow (red-tinted on the light page, plain
+     dark on the dark one), the focus ring and list markers (cyan where it has
      contrast), highlighted text, the black footer (its background, rule, text, small print and links, and the
      footer mark, white with black bars in both themes), the surface behind pictures made for a white page (white in the
      dark theme), and the network map (land dots and the three kinds of pin). The theme-color meta tags in base.njk
      repeat --band. */
   --band: #000000; --band-text: #ffffff; --band-mark: #ffffff; --band-line: transparent; --band-focus: #00ffff; --band-panel-line: #3a3a3a; --on-accent: #ffffff;
   --light-bg: #ffffff; --light-text: #cc0000; --light-hover: #ffe8e8; --light-shadow: none;
-  --outline-hover: #ececec; --focus: #008b8b; --marker: #008b8b; --highlight: #fff3a3;
+  --outline-hover: #ffe8e8; --accent-shadow: 0 8px 22px rgb(204 0 0 / .26); --accent-shadow-hover: 0 12px 28px rgb(204 0 0 / .34);
+  --focus: #008b8b; --marker: #008b8b; --highlight: #fff3a3;
   --footer-bg: #000000; --footer-line: transparent; --footer-text: #ffffff; --footer-muted: #b5b5b8;
   --logo-back: #ffffff; --logo-front: #000000; --picture-surface: transparent;
   --map-land: #ecc3c3; --pin-core: #cc0000; --pin-edge: #00838f; --pin-soon: #8a8a8a;
@@ -28,7 +30,8 @@
   :root {
     --page: #131313; --surface: #1f1f21; --subtle: #2a2a2d; --text: #f4f4f4; --muted: #b5b5b8;
     --line: #2c2c30; --ink: #ff6b6b;
-    --outline-hover: #2a2a2d; --focus: #00ffff; --marker: #00ffff; --highlight: #5c4d00;
+    --outline-hover: #3a1517; --accent-shadow: 0 8px 22px rgb(0 0 0 / .55); --accent-shadow-hover: 0 12px 28px rgb(0 0 0 / .7);
+    --focus: #00ffff; --marker: #00ffff; --highlight: #5c4d00;
     --footer-line: #2c2c30; --picture-surface: #ffffff;
     --map-land: #6a4349; --pin-core: #ff4d4d; --pin-edge: #00e5ff; --pin-soon: #8f8f8f;
   }
@@ -75,6 +78,13 @@ h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
 /* TRIPLEBIT. The quieter button beside a filled one, for MkDocs's plain .md-button. */
 .button.outline { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
 .button.outline:hover { background: var(--outline-hover); }
+/* TRIPLEBIT. Larvatus's filled buttons sit flat on its pages and its hero's light button has a shadow; here the filled
+   button has a soft shadow of its own (a token per theme), which deepens as it lifts on hover, and the hover color is
+   a slightly brighter red rather than a darker one. The light and outline buttons keep their own (no) shadow. The lift
+   stays still for readers who ask for less motion. */
+.button:not(.light):not(.outline) { box-shadow: var(--accent-shadow); transition: background .15s, transform .15s, box-shadow .15s; }
+.button:not(.light):not(.outline):hover { box-shadow: var(--accent-shadow-hover); }
+@media (prefers-reduced-motion: reduce) { .button, .button:hover { transform: none; transition: none; } }
 
 /* SHARED. The band: navigation and the page title. Larvatus's gradient and watermark are left out. */
 .band { position: relative; overflow: hidden; color: var(--band-text); background: var(--band); }
@@ -128,9 +138,11 @@ h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
 /* Open, the menu lays the sections out under the header across the band's full width, over the page. */
 .menu-panel { position: absolute; z-index: 10; top: 100%; left: 0; right: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 20px 24px; padding: 20px 24px 28px; border-block: 1px solid var(--band-panel-line); background: var(--band); }
-.menu-panel p { margin-bottom: 4px; font-size: .8rem; font-weight: 600; opacity: .7; }
+.menu-panel p { margin-bottom: 4px; font-size: .95rem; font-weight: 700; }
 .menu-panel ul { margin: 0; padding: 0; list-style: none; }
 .nav .menu-panel a { display: block; padding: 9px 0; white-space: normal; }
+/* A section's heading is a link to its first page that still looks like the heading. */
+.nav .menu-panel p > a:not(.lockup):not(.button) { display: inline; padding: 0; font-size: inherit; font-weight: 700; line-height: inherit; opacity: 1; }
 .nav .menu { margin-right: -12px; }
 @media (min-width: 861px) { .nav .menu { display: none; } }
 /* Phones: sections pack. In the menu, and in the footer below 761px, sections two across would line up in rows, so a
@@ -143,6 +155,9 @@ h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
 .menu-panel > div { grid-row: span var(--rows); }
 .menu-panel p { height: 21px; margin: 0; line-height: 17px; }
 .nav .menu-panel a { line-height: 24px; }
+/* A label that wraps (Monero Remote Node) keeps its two lines close: tighter lines, with padding making up the
+   difference so a one-line item stays 42px, two rows. */
+.nav .menu-panel li a { padding: 11px 0; line-height: 20px; }
 
 /* SHARED. The footer. */
 footer { padding: 40px 0 56px; border-top: 1px solid var(--footer-line); color: var(--footer-muted); font-size: .9rem; }
@@ -184,11 +199,18 @@ footer nav a[aria-current] { color: var(--footer-text); }
   footer nav { grid-auto-rows: 30px; row-gap: 0; margin-bottom: -30px; }
   footer nav > div { grid-row: span var(--rows); }
   footer h2 { margin-bottom: 6px; line-height: 24px; }
-  footer li { line-height: 24px; }
+  /* A wrapping label keeps its lines close (19px apart); padding keeps a one-line item 24px tall. */
+  footer li { padding: 2.5px 0; line-height: 19px; }
 }
+/* The section headings link to each section's first page and look like the headings they are. */
+footer h2 a { color: inherit; }
+footer nav h2 a[aria-current] { color: inherit; text-decoration: underline; }
+/* Desktop: the brand column is as wide as the small print on one line, and the sections are a compact group of columns
+   at the right, each as wide as its longest label, wrapping onto further rows when there are more than fit. */
 @media (min-width: 761px) {
-  footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
-  footer nav { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+  footer .wrap { grid-template-columns: max-content minmax(0, 1fr); }
+  footer .brand p { max-width: none; white-space: nowrap; }
+  footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 28px 56px; }
 }
 
 /* SHARED. The title band and the page text. */
@@ -248,16 +270,20 @@ footer nav a[aria-current] { color: var(--footer-text); }
 /* Larvatus: its band and button colors, from its site.css. */
 .project.larvatus { --card-from: #e43a62; --card: #dd2b55; --card-to: #c4214a; --card-ink: #c4214a; --card-hover: #fff3f5; --card-shadow: 80 0 20; }
 
-/* TRIPLEBIT. The home page: the full width of .wrap rather than the prose column. The opening sentence is a lead
-   across about two thirds of it; then each section is a row, its heading in a narrow column on the left and its
-   content (in the prose styles) on the right, with a hairline between rows. Below 860px a heading sits above its
-   content. Programs are a two-by-two grid of plain text blocks, and Organization puts the address beside the
-   documents; both are one column on phones. */
-.home { padding: 64px 0 96px; }
-.home .lead { max-width: 30em; margin-bottom: 56px; font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.4; letter-spacing: -.012em;
+/* TRIPLEBIT. The home page: the band carries the opening sentence as its main text, under a heading that is there for
+   screen readers only. The main uses the full width of .wrap rather than the prose column: each section is a row,
+   its heading in a narrow column on the left and its content (in the prose styles) on the right, with a hairline
+   between rows (not above the first). Below 860px a heading sits above its content. Programs are a two-by-two grid of
+   plain text blocks, and Organization puts the address beside the documents; both are one column on phones. */
+/* Browsers may break "501(c)(3)" between its brackets, and an EIN at its hyphen. */
+.nobreak { white-space: nowrap; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0);
+  clip-path: inset(50%); white-space: nowrap; border: 0; }
+.home-title { padding-top: 32px; padding-bottom: 72px; }
+.home-title .lead { max-width: 28em; font-size: clamp(1.45rem, 3.2vw, 2.25rem); font-weight: 500; line-height: 1.32; letter-spacing: -.018em;
   text-wrap: pretty; }
-/* Browsers may break "501(c)(3)" between its brackets; the lead is large enough for that to show. */
-.home .nobreak { white-space: nowrap; }
+.home { padding: 16px 0 96px; }
+.home .row:first-child { border-top: 0; }
 .home .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 16px 48px; padding: 48px 0; border-top: 1px solid var(--line); }
 .home .row > h2 { font-size: 1.45rem; letter-spacing: -.016em; line-height: 1.2; }
 .home .prose { max-width: none; padding: 0; }

@@ -51,6 +51,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("headingId", (text) => unique(slugify(text), new Set()));
   // The nav section (from _data/nav.json) that a page belongs to, if any.
   eleventyConfig.addFilter("section", (nav, url) => nav.find((s) => s.pages.some((p) => p.url === url)));
+  // The pages to list under a section's heading. The heading links to the section's first page, so that page is left
+  // out when its label is the section's own (About, Projects); "What We Do" stays under Services. Used for the header
+  // dropdowns, the phone menu and the footer.
+  eleventyConfig.addFilter("subpages", (section) =>
+    section.pages[0].label === section.label ? section.pages.slice(1) : section.pages);
   // How many of a section's page labels are long enough to wrap onto two lines in a phone's two-across columns (the
   // header menu and the footer), about 150px wide: "Monero Remote Node" does, "Privacy Notice" does not. base.njk uses
   // it to size each section's grid rows so the sections pack (see "Phones: sections pack" in site.css).
