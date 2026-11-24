@@ -51,6 +51,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("headingId", (text) => unique(slugify(text), new Set()));
   // The nav section (from _data/nav.json) that a page belongs to, if any.
   eleventyConfig.addFilter("section", (nav, url) => nav.find((s) => s.pages.some((p) => p.url === url)));
+  // How many of a section's page labels are long enough to wrap onto two lines in a phone's two-across columns (the
+  // header menu and the footer), about 150px wide: "Monero Remote Node" does, "Privacy Notice" does not. base.njk uses
+  // it to size each section's grid rows so the sections pack (see "Phones: sections pack" in site.css).
+  eleventyConfig.addFilter("longLabels", (pages) => pages.filter((p) => p.label.length > 16).length);
+  // A pin of the home page's network map (from _data/locations.json) by its id.
+  eleventyConfig.addFilter("pin", (pins, id) => pins.find((p) => p.id === id));
 
   eleventyConfig.amendLibrary("md", (md) => {
     // Attributes after an element, in braces: classes ({.button}, {.float}, {.note}), image sizes and lazy loading,

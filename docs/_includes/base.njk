@@ -1,7 +1,7 @@
 {#- Started from the Larvatus website's src/_includes/base.njk (../ChatGPT/maskedemail-website). The head, the header band
     with its nav, the title band and the footer are shared with it in shape and must be kept in step by hand: there is
-    no shared package. Triplebit's own parts are the section nav (from _data/nav.json, which also feeds the header and
-    footer), the section row under the heading and the home page's JSON-LD.
+    no shared package. Triplebit's own parts are the section nav (from _data/nav.json, which feeds the header links,
+    their dropdown panels, the phone menu and the footer columns) and the home page's JSON-LD.
 
     Paths are relative ("" at the root, "../" a folder down), as in Larvatus, except on 404.html, which the server
     returns at any depth, so its paths start at the root. -#}
@@ -31,10 +31,43 @@
         to the bars' width (see .nav .lockup in site.css). The svg sits in a span so that, as in the footer, it lines up
         with the text by vertical-align. #}
     <a class="lockup" href="{{ href('/') }}"><span><svg viewBox="10 0 44 64" aria-hidden="true"><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-band"/></g></g></svg></span><span>Triplebit</span></a>
+    {#- Each section links to its first page and is marked while one of its pages is open. On wide screens a section
+        with more than one page lists them in a panel that opens on hover and on keyboard focus; on phones these links
+        hide and the menu button below lists everything. All of it comes from _data/nav.json. #}
     {%- for s in nav %}
-    {#- Each section links to its first page and is marked while one of its pages is open. #}
-    <a class="hide" href="{{ href(s.pages[0].url) }}"{% if s == section %} aria-current="{{ 'page' if s.pages[0].url == page.url else 'true' }}"{% endif %}>{{ s.label }}</a>
+    {%- set current = (' aria-current="' + ('page' if s.pages[0].url == page.url else 'true') + '"') if s == section else '' %}
+    {%- if s.pages.length > 1 %}
+    <div class="hide drop">
+      <a href="{{ href(s.pages[0].url) }}"{{ current | safe }}>{{ s.label }}</a>
+      <div class="panel">
+        <ul>
+          {%- for p in s.pages %}
+          <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+    {%- else %}
+    <a class="hide" href="{{ href(s.pages[0].url) }}"{{ current | safe }}>{{ s.label }}</a>
+    {%- endif %}
     {%- endfor %}
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></summary>
+      <div class="menu-panel">
+        {%- for s in nav %}
+        {#- --rows sizes the section for packing on phones: a heading, two rows per link plus one per wrapping label,
+            and a gap (site.css). #}
+        <div style="--rows: {{ s.pages.length * 2 + (s.pages | longLabels) + 2 }}">
+          <p>{{ s.label }}</p>
+          <ul>
+            {%- for p in s.pages %}
+            <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+        {%- endfor %}
+      </div>
+    </details>
     <a class="button light" href="{{ href('/donate/') }}">Donate</a>
   </nav>
 {% block band %}
@@ -44,14 +77,6 @@
     <h1{% if titleAnchor != false %} id="{{ title | headingId }}"{% endif %}>{{ title }}</h1>
     {%- if subtitle %}
     <p class="date">{{ subtitle }}</p>
-    {%- endif %}
-    {%- if section and section.pages.length > 1 %}
-    {#- The pages of this section. The header's section links hide on phones; this row stays. #}
-    <nav class="sections" aria-label="{{ section.label }}">
-      {%- for p in section.pages %}
-      <a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a>
-      {%- endfor %}
-    </nav>
     {%- endif %}
   </div>
 {% endblock %}
@@ -64,15 +89,19 @@
 
 <footer>
   <div class="wrap">
-    {#- The footer is columns, by the owner's choice (2026-11-24), where Larvatus's is one row: the lockup with the
-        small print under it, then a column for each nav section. The lockup sits where it does on Larvatus. #}
+    {#- The footer is black and in columns, by the owner's choice (2026-11-24), where Larvatus's is one row: the lockup
+        with the small print and the Candid seal under it, then a column for each nav section. On desktop widths the
+        lockup sits where it does on Larvatus; on a phone the brand column moves below the sections (site.css). #}
     <div class="brand">
       <div class="lockup"><a href="{{ href('/') }}" aria-label="Triplebit"><svg viewBox="0 0 64 64" aria-hidden="true"><rect class="tb-back" width="64" height="64" rx="15"/><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-front"/></g></g></svg></a><span>Triplebit</span></div>
       <p>&copy; Triplebit Corporation, a Delaware 501(c)(3) public charity (EIN 42-3053859)</p>
+      <a class="seal" href="https://app.candid.org/profile/16663599/triplebit-corporation/?pkId=aee92b4a-e0bc-427c-b5aa-e3750023eb8f&amp;isActive=true"><img src="{{ root }}images/candid-seal-platinum-2026.svg" alt="2026 Candid Seal of Transparency" width="96" height="96"></a>
     </div>
     <nav aria-label="Footer">
       {%- for s in nav %}
-      <div>
+      {#- --rows sizes the section for packing on phones: a heading, a row per link plus one per wrapping label, and a
+          gap (site.css). #}
+      <div style="--rows: {{ s.pages.length + (s.pages | longLabels) + 2 }}">
         <h2>{{ s.label }}</h2>
         <ul>
           {%- for p in s.pages %}

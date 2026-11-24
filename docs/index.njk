@@ -1,0 +1,142 @@
+---
+# The MkDocs home heading was the logo image, with the id "_1"; nothing links to that, so this heading has no id.
+titleAnchor: false
+title: Triplebit
+pageTitle: Triplebit
+description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
+---
+{#- The home page. It keeps the default title band and section row, and lays its main out across the full width: the
+    opening sentence as a lead, then a row per section with the heading on the left and the content on the right. The
+    text and heading ids are those of the Markdown page it replaced; the content uses the prose styles. -#}
+{% extends "base.njk" %}
+{% block main %}
+{#- Pins are drawn at their size in the image: core largest, coming soon smallest. #}
+{%- set pinScale = { core: 1.25, edge: 1, soon: 0.8 } %}
+<main class="home">
+  <div class="wrap">
+    <p class="lead">Founded in 2024, Triplebit Corporation ("Triplebit") is a <span class="nobreak">501(c)(3)</span> public charity and transit internet service provider (ISP) based in Delaware.</p>
+
+    <section class="row" aria-labelledby="mission">
+      <h2 id="mission">Mission</h2>
+      <div class="prose">
+        <p>Triplebit defends our First and Fourth Amendment rights in the United States by operating privacy-focused public benefit infrastructure, educating people on digital and financial privacy, promoting free, uncensored internet access for journalists and activists in the United States and globally, and contributing to scientific research in digital privacy fields.</p>
+        <p><a href="https://www.every.org/triplebit?code=2eabf918#/donate/bank" class="button">Donate via Bank</a>
+        <a href="donate/" class="button outline">Donate (Other)</a></p>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="programs">
+      <h2 id="programs">Programs</h2>
+      <div class="prose programs">
+        <div>
+          <h3 id="access">Access</h3>
+          <p><strong>Triplebit Access</strong> is a digital inclusion program serving as an uncensored entry point to the internet in the United States to individuals who lack internet connectivity, lack appropriate internet-connected devices, or who would grow their computer/internet access and safety through the use of our program's connectivity services.</p>
+        </div>
+        <div>
+          <h3 id="bridge">Bridge</h3>
+          <p><strong>Triplebit Bridge</strong> is a collection of services that serve to bypass censorship and enable freedom of expression online. We envision a world where access and privacy are the defaults. We encourage you to read more about privacy at <a href="https://www.privacyguides.org">privacyguides.org</a>.</p>
+        </div>
+        <div>
+          <h3 id="core">Core</h3>
+          <p><strong>Triplebit Core</strong> is a collection of dedicated infrastructure services that support decentralized, privacy-focused, open-source projects including Tor, I2P, and Monero.</p>
+        </div>
+        <div>
+          <h3 id="enable">Enable</h3>
+          <p><strong>Triplebit Enable</strong> is a program which provides IT services, infrastructure, and consulting to other 501(c)(3) non-profits in support of their missions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="network">
+      <h2 id="network">Network</h2>
+      <div class="prose">
+        <p>To further our mission, Triplebit operates unfiltered, high capacity privacy and internet infrastructure with direct peering to the <a href="https://micemn.net/">Midwest Internet Cooperative Exchange</a>, Kansas City Internet Exchange, Saint Louis Internet Exchange, and Houston Internet Exchange.</p>
+        {#- The map: land as dots (map-land.svg, made by tools/make-map.mjs from public/triplebit-map.webp, which the
+            page used to show), and the pins and the dashed links between core locations from _data/locations.json. #}
+        <figure class="map">
+          <svg viewBox="0 0 200 99" role="img" aria-label="Map of Triplebit network locations">
+            <defs><path id="pin" d="M0 0C-.8-1.4-2.4-2.7-2.4-4.6a2.4 2.4 0 1 1 4.8 0C2.4-2.7.8-1.4 0 0ZM0-5.6a1 1 0 1 0 0 2a1 1 0 1 0 0-2Z"/></defs>
+            {% include "map-land.svg" %}
+            {%- for link in locations.links %}
+            {%- set a = locations.pins | pin(link[0]) %}{% set b = locations.pins | pin(link[1]) %}
+            <line class="link" x1="{{ a.x }}" y1="{{ a.y }}" x2="{{ b.x }}" y2="{{ b.y }}"/>
+            {%- endfor %}
+            {%- for p in locations.pins %}
+            <use href="#pin" class="pin {{ p.kind }}" transform="translate({{ p.x }} {{ p.y }}) scale({{ pinScale[p.kind] }})"/>
+            {%- endfor %}
+          </svg>
+          <ul class="legend">
+            <li><svg viewBox="-3 -7 6 7.5" aria-hidden="true"><use href="#pin" class="pin core"/></svg>Core Location</li>
+            <li><svg viewBox="-3 -7 6 7.5" aria-hidden="true"><use href="#pin" class="pin edge"/></svg>Edge Location</li>
+            <li><svg viewBox="-3 -7 6 7.5" aria-hidden="true"><use href="#pin" class="pin soon"/></svg>Coming Soon</li>
+          </ul>
+        </figure>
+        <p>We enhance network privacy by:</p>
+        <ul>
+          <li>Operating infrastructure on hardware we own</li>
+          <li>Peering directly with major content providers and content delivery networks, reducing middlemen ISPs</li>
+          <li>Homing our services on major Internet Exchanges</li>
+        </ul>
+        <p>Triplebit's <a href="https://www.arin.net/resources/guide/asn/">Autonomous System Number (ASN)</a> is <a href="https://whois.arin.net/rest/asn/AS401332.html">401332</a>.</p>
+        <ul>
+          <li>View Triplebit's live <a href="https://bgp.tools/as/401332">BGP/peering status</a> on bgp.tools</li>
+        </ul>
+        <p>To troubleshoot connectivity to/from our network, you can perform a traceroute or ping from our network to any internet host via <a href="https://bgp.he.net/AS401332#_traceroute">this web portal</a>: Simply enter the IP/hostname you want to query, select <code>Probe #7395</code> from the list, and our <a href="https://atlas.ripe.net/probes/7395">RIPE anchor</a> will query the host and return the results to you.</p>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="status">
+      <h2 id="status">Status</h2>
+      <div class="prose">
+        <ul>
+          <li>Follow <a href="https://mstdn.plus/@triplebit" rel="me">@triplebit@mstdn.plus</a> on Mastodon</li>
+          <li>View Triplebit's Tor relays on Tor Project's <a href="https://metrics.torproject.org/rs.html#search/as:AS401332">Relay Search</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="friends">
+      <h2 id="friends">Friends</h2>
+      <div class="prose">
+        <p class="friends">
+        <a href="https://www.privacyguides.org/en/" rel="nofollow noopener" target="_blank" title="Privacy Guides"><img src="public/friends/privacy-guides.webp" alt="Privacy Guides"></a>
+        <a href="https://ivycyber.com" rel="nofollow noopener" target="_blank" title="Ivy Cyber"><img src="public/friends/ivy-cyber.webp" alt="Ivy Cyber"></a>
+        <img src="public/friends/power-up-privacy.webp" alt="Power Up Privacy">
+        <a href="https://unredacted.org" rel="nofollow noopener" target="_blank" title="Unredacted"><img src="public/friends/unredacted.webp" alt="Unredacted"></a>
+        <a href="https://kiwix.org" rel="nofollow noopener" target="_blank" title="Kiwix"><img src="public/friends/kiwix.webp" alt="Kiwix"></a>
+        <a href="https://www.torproject.org" rel="nofollow noopener" target="_blank" title="Tor Project"><img src="public/friends/tor-project.webp" alt="Tor Project"></a>
+        <a href="https://emeraldonion.org" rel="nofollow noopener" target="_blank" title="Emerald Onion"><img src="public/friends/emerald-onion.webp" alt="Emerald Onion"></a>
+        <a href="https://getmonero.org" rel="nofollow noopener" target="_blank" title="Monero"><img src="public/friends/monero.webp" alt="Monero"></a>
+        <a href="https://he.net" rel="nofollow noopener" target="_blank" title="Hurricane Electric"><img src="public/friends/hurricane-electric.webp" alt="Hurricane Electric"></a>
+        </p>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="organization">
+      <h2 id="organization">Organization</h2>
+      <div class="prose organization">
+        <div>
+          <p>Triplebit Corporation<br>
+          8 The Green<br>
+          STE 15564<br>
+          Dover, DE 19901<br>
+          United States</p>
+          <p>info@triplebit.org - (302) 599-3514</p>
+        </div>
+        <div>
+          <ul>
+            <li><a href="public/documents/irs-determination.pdf">IRS Determination Letter</a></li>
+            <li><a href="public/documents/irs-1023-ez.pdf">IRS Form 1023-EZ</a></li>
+            <li><a href="public/documents/certificate-of-incorporation.pdf">Delaware Certificate of Incorporation</a></li>
+          </ul>
+          <p>Yearly Documents:</p>
+          <ul>
+            <li>2026: <a href="public/documents/irs-2026-form-5768.pdf">IRS Form 5768</a></li>
+            <li>2025: <a href="public/documents/irs-2025-form-990n.pdf">Form 990-N</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}

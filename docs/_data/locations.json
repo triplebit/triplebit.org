@@ -1,0 +1,20 @@
+{
+  "_comment": "The pins on the home page's network map, taken from the owner's image (docs/public/triplebit-map.webp) by tools/make-map.mjs. x and y are the pin's tip in the map's grid units (viewBox 0 0 200 99). kind is core (Core Location), edge (Edge Location) or soon (Coming Soon). links join core pins by their id with a dashed line. The places are not named here because the image does not name them.",
+  "pins": [
+    { "id": "core-1", "kind": "core", "x": 38.7, "y": 22.4 },
+    { "id": "core-2", "kind": "core", "x": 32.4, "y": 30 },
+    { "id": "core-3", "kind": "core", "x": 104.8, "y": 20.6 },
+    { "id": "edge-1", "kind": "edge", "x": 18.6, "y": 31.2 },
+    { "id": "edge-2", "kind": "edge", "x": 41.8, "y": 38.6 },
+    { "id": "edge-3", "kind": "edge", "x": 97.4, "y": 15.2 },
+    { "id": "edge-4", "kind": "edge", "x": 64.6, "y": 73.4 },
+    { "id": "edge-5", "kind": "edge", "x": 106.9, "y": 82 },
+    { "id": "edge-6", "kind": "edge", "x": 158.4, "y": 55.6 },
+    { "id": "soon-1", "kind": "soon", "x": 84.1, "y": 11.4 },
+    { "id": "soon-2", "kind": "soon", "x": 95.5, "y": 23.8 },
+    { "id": "soon-3", "kind": "soon", "x": 177.2, "y": 31.2 },
+    { "id": "soon-4", "kind": "soon", "x": 185.5, "y": 83 },
+    { "id": "soon-5", "kind": "soon", "x": 195.6, "y": 89.2 }
+  ],
+  "links": [["core-1", "core-2"], ["core-1", "core-3"], ["core-2", "core-3"]]
+}

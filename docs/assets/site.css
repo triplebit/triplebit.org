@@ -10,14 +10,18 @@
   --page: #fafafa; --surface: #ffffff; --subtle: #ececec; --text: #111111; --muted: #555555;
   --line: #e2e2e2; --accent: #cc0000; --accent-hover: #a80000; --ink: #cc0000;
   /* Triplebit's tokens for what Larvatus sets by hand: the band (its text, the middle bar of the nav mark, a rule under
-     it for a band as light as the page, and its focus ring and current-link underline), text on the accent, the light
+     it for a band as light as the page, its focus ring and current-link underline, and the border of its menus), text on the accent, the light
      button on the band (the Donate button), the outline button, the focus ring and list markers (cyan where it has
-     contrast), highlighted text, the bars of the footer mark, and the surface behind pictures made for a white page
-     (white in the dark theme). The theme-color meta tags in base.njk repeat --band. */
-  --band: #000000; --band-text: #ffffff; --band-mark: #ffffff; --band-line: transparent; --band-focus: #00ffff; --on-accent: #ffffff;
+     contrast), highlighted text, the black footer (its background, rule, text, small print and links, and the
+     footer mark, white with black bars in both themes), the surface behind pictures made for a white page (white in the
+     dark theme), and the network map (land dots and the three kinds of pin). The theme-color meta tags in base.njk
+     repeat --band. */
+  --band: #000000; --band-text: #ffffff; --band-mark: #ffffff; --band-line: transparent; --band-focus: #00ffff; --band-panel-line: #3a3a3a; --on-accent: #ffffff;
   --light-bg: #ffffff; --light-text: #cc0000; --light-hover: #ffe8e8; --light-shadow: none;
   --outline-hover: #ececec; --focus: #008b8b; --marker: #008b8b; --highlight: #fff3a3;
-  --logo-back: #000000; --logo-front: #ffffff; --picture-surface: transparent;
+  --footer-bg: #000000; --footer-line: transparent; --footer-text: #ffffff; --footer-muted: #b5b5b8;
+  --logo-back: #ffffff; --logo-front: #000000; --picture-surface: transparent;
+  --map-land: #ecc3c3; --pin-core: #cc0000; --pin-edge: #00838f; --pin-soon: #8a8a8a;
   --wrap: 1200px;
 }
 @media (prefers-color-scheme: dark) {
@@ -25,7 +29,8 @@
     --page: #131313; --surface: #1f1f21; --subtle: #2a2a2d; --text: #f4f4f4; --muted: #b5b5b8;
     --line: #2c2c30; --ink: #ff6b6b;
     --outline-hover: #2a2a2d; --focus: #00ffff; --marker: #00ffff; --highlight: #5c4d00;
-    --logo-back: #ffffff; --logo-front: #000000; --picture-surface: #ffffff;
+    --footer-line: #2c2c30; --picture-surface: #ffffff;
+    --map-land: #6a4349; --pin-core: #ff4d4d; --pin-edge: #00e5ff; --pin-soon: #8f8f8f;
   }
 }
 
@@ -97,35 +102,90 @@ h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
 .nav a[aria-current]:not(.lockup):not(.button) { opacity: 1; text-decoration: underline; text-decoration-color: var(--band-focus);
   text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
+/* TRIPLEBIT. Larvatus's navbar shows its links on wide screens and simply hides them below 860px. This one, by the
+   owner's choice (2026-11-24), also shows each section's pages: on wide screens in a panel under the section's link,
+   opened by hover or keyboard focus (no script), and on phones in a menu behind a button left of Donate, built on
+   <details>. The shared .nav rules above are unchanged, so this block could be ported to Larvatus as it is. The band
+   lets the panels hang below it. */
+.band { overflow: visible; }
+.nav .drop { position: relative; }
+.nav .drop > a::after { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 2px 3px 7px; border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+/* The panel starts right under the link; its top padding bridges the gap so it stays open while the pointer moves
+   down to it. */
+.nav .drop .panel { display: none; position: absolute; z-index: 10; top: 100%; left: -16px; padding-top: 12px; }
+.nav .drop:hover .panel, .nav .drop:focus-within .panel { display: block; }
+.nav .panel ul { min-width: 210px; margin: 0; padding: 8px 0; list-style: none; border: 1px solid var(--band-panel-line); border-radius: 10px;
+  background: var(--band); }
+.nav .panel a { display: block; padding: 7px 16px; }
+/* The phone menu. Hidden on wide screens, where the links show. */
+.menu summary { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 10px; cursor: pointer; list-style: none; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary::marker { content: ""; }
+.menu svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.menu .close, .menu[open] .open { display: none; }
+.menu[open] .close { display: block; }
+/* Open, the menu lays the sections out under the header across the band's full width, over the page. */
+.menu-panel { position: absolute; z-index: 10; top: 100%; left: 0; right: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px 24px; padding: 20px 24px 28px; border-block: 1px solid var(--band-panel-line); background: var(--band); }
+.menu-panel p { margin-bottom: 4px; font-size: .8rem; font-weight: 600; opacity: .7; }
+.menu-panel ul { margin: 0; padding: 0; list-style: none; }
+.nav .menu-panel a { display: block; padding: 9px 0; white-space: normal; }
+.nav .menu { margin-right: -12px; }
+@media (min-width: 861px) { .nav .menu { display: none; } }
+/* Phones: sections pack. In the menu, and in the footer below 761px, sections two across would line up in rows, so a
+   short section under a long one leaves a hole. Instead the grid has small fixed rows and no row gap, and each section
+   spans as many rows as it needs (--rows, from base.njk: its heading, its links, a wrapping label and a gap row). Grid
+   auto-placement then puts each section in the first free place in nav order, which is the top of the shortest column
+   so far: About, then Projects under it, with Services beside them. (CSS columns would balance the column heights and
+   put Projects under Services instead.) The rows are sized so a heading, a link and the gap each fill whole rows. */
+.menu-panel { grid-auto-rows: 21px; row-gap: 0; }
+.menu-panel > div { grid-row: span var(--rows); }
+.menu-panel p { height: 21px; margin: 0; line-height: 17px; }
+.nav .menu-panel a { line-height: 24px; }
+
 /* SHARED. The footer. */
-footer { padding: 40px 0 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+footer { padding: 40px 0 56px; border-top: 1px solid var(--footer-line); color: var(--footer-muted); font-size: .9rem; }
 /* The footer lockup is set so that the T of Triplebit is exactly as tall as the middle bar of the mark and sits level
    with it. In the mark's 64-unit square the bar runs from 21 to 43, so it is 22/64 of the mark's size; Montserrat's
    capitals are 0.7em tall. The font size follows from those two, and the mark is lowered until the bar's foot (21/64
    above the mark's own) rests on the text's baseline. At 2rem the bar and the T are both 11px. */
-footer .lockup { --mark: 2rem; align-items: baseline; color: var(--text); font-size: calc(var(--mark) * 22 / 64 / .7); font-weight: 900;
+footer .lockup { --mark: 2rem; align-items: baseline; color: var(--footer-text); font-size: calc(var(--mark) * 22 / 64 / .7); font-weight: 900;
   font-style: italic; letter-spacing: 0; line-height: 1; }
 footer .lockup svg { display: inline-block; width: var(--mark); height: var(--mark); vertical-align: calc(var(--mark) * -21 / 64); }
-/* The footer lockup is Triplebit's mark, linked to its site, beside a line of text. The mark is white bars on black,
-   and black bars on white in the dark theme (the swap is in the dark tokens). */
+/* The footer lockup is Triplebit's mark, linked to its site, beside a line of text. On Larvatus the mark is white bars
+   on black, and black bars on white in the dark theme; on this site's black footer it is black bars on white in both
+   (the tokens). */
 .tb-back { fill: var(--logo-back); }
 .tb-front { fill: var(--logo-front); }
-footer nav a { color: var(--muted); text-decoration: none; }
-footer nav a:hover { color: var(--ink); text-decoration: underline; }
+footer nav a { color: var(--footer-muted); text-decoration: none; }
+footer nav a:hover { color: var(--footer-text); text-decoration: underline; }
 /* TRIPLEBIT. Here the text beside the mark is the name, in capitals like the nav lockup. */
 footer .lockup span { text-transform: uppercase; }
-/* TRIPLEBIT. Larvatus's footer is one row (lockup, nav, small print); this one is columns, by the owner's choice
-   (2026-11-24), so Larvatus's footer .wrap, footer nav and footer p rules are left out. The lockup keeps exactly the
-   place it has on Larvatus: top left of .wrap, under the same padding. Beside it, a column per nav section; the columns
-   fill the space and wrap onto further rows, so more sections need no change here. On a phone the lockup and small
-   print come first, full width, and the sections follow two across. */
+/* TRIPLEBIT. Larvatus's footer is one row (lockup, nav, small print) on the page's color; this one is black, in
+   columns, by the owner's choice (2026-11-24), so Larvatus's footer .wrap, footer nav and footer p rules are left out.
+   On desktop widths the lockup keeps exactly the place it has on Larvatus: top left of .wrap, under the same padding.
+   Beside it, a column per nav section; the columns fill the space and wrap onto further rows, so more sections need no
+   change here. On a phone the sections come first, two across, and the brand column (lockup, small print, seal) goes
+   full width below them (order; the markup stays brand first), also by the owner's choice (2026-11-24). */
+footer { background: var(--footer-bg); }
 footer .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px 48px; align-items: start; }
 footer .brand p { margin-top: 16px; max-width: 26em; }
+footer .seal { display: inline-block; margin-top: 20px; }
+footer .seal img { width: 96px; height: 96px; }
 footer nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 28px 32px; }
-footer h2 { margin-bottom: 10px; color: var(--text); font-size: .9rem; font-weight: 600; letter-spacing: 0; line-height: 1.4; }
+footer h2 { margin-bottom: 10px; color: var(--footer-text); font-size: .9rem; font-weight: 600; letter-spacing: 0; line-height: 1.4; }
 footer ul { padding: 0; list-style: none; }
 footer li + li { margin-top: 6px; }
-footer nav a[aria-current] { color: var(--text); }
+footer nav a[aria-current] { color: var(--footer-text); }
+@media (max-width: 760px) {
+  footer .brand { order: 1; }
+  /* Phones: sections pack, as in the menu (see there). A row is a link's height (24px) and its 6px gap. */
+  footer nav { grid-auto-rows: 30px; row-gap: 0; margin-bottom: -30px; }
+  footer nav > div { grid-row: span var(--rows); }
+  footer h2 { margin-bottom: 6px; line-height: 24px; }
+  footer li { line-height: 24px; }
+}
 @media (min-width: 761px) {
   footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   footer nav { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
@@ -142,14 +202,6 @@ footer nav a[aria-current] { color: var(--text); }
 .prose li { margin: 10px 0; }
 .prose li::marker { color: var(--marker); }
 .prose code { padding: 1px 5px; border-radius: 6px; background: var(--subtle); font: .86em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
-
-/* TRIPLEBIT. The pages of the current section, under the heading. Unlike the header's links they stay on phones,
-   wrapping onto more lines rather than scrolling sideways. */
-.sections { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 22px; font-size: .95rem; font-weight: 500; }
-.sections a { text-decoration: none; opacity: .8; }
-.sections a:hover { opacity: 1; text-decoration: underline; }
-.sections a[aria-current] { opacity: 1; text-decoration: underline; text-decoration-color: var(--band-focus); text-decoration-thickness: 2px;
-  text-underline-offset: 6px; }
 
 /* TRIPLEBIT. What the MkDocs pages use beyond Larvatus's prose. */
 .prose h2 { clear: both; }
@@ -169,11 +221,10 @@ footer nav a[aria-current] { color: var(--text); }
 @media (max-width: 600px) { .prose .float { float: none; width: 100%; margin: 16px auto; } }
 /* A row of buttons wraps on a phone. */
 .prose p:has(> .button) { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-/* Pictures made for a white page, on a white surface in the dark theme: friends' logos, and the network map, whose
-   legend is dark text on a transparent background. (The bridge QR codes carry their own white.) */
+/* Friends' logos, made for a white page, on a white surface in the dark theme. (The bridge QR codes carry their own
+   white.) */
 .prose .friends { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px 36px; margin: 24px 0;
   padding: 24px; border-radius: 16px; background: var(--picture-surface); }
-.prose .on-light { padding: 12px; border-radius: 16px; background: var(--picture-surface); }
 .prose .friends img { width: auto; height: 3.25rem; }
 
 /* TRIPLEBIT. The projects page: a card per project, shaped like the donation card at the foot of the Larvatus home
@@ -196,3 +247,51 @@ footer nav a[aria-current] { color: var(--text); }
 @media (max-width: 620px) { .project { padding: 36px 24px; } }
 /* Larvatus: its band and button colors, from its site.css. */
 .project.larvatus { --card-from: #e43a62; --card: #dd2b55; --card-to: #c4214a; --card-ink: #c4214a; --card-hover: #fff3f5; --card-shadow: 80 0 20; }
+
+/* TRIPLEBIT. The home page: the full width of .wrap rather than the prose column. The opening sentence is a lead
+   across about two thirds of it; then each section is a row, its heading in a narrow column on the left and its
+   content (in the prose styles) on the right, with a hairline between rows. Below 860px a heading sits above its
+   content. Programs are a two-by-two grid of plain text blocks, and Organization puts the address beside the
+   documents; both are one column on phones. */
+.home { padding: 64px 0 96px; }
+.home .lead { max-width: 30em; margin-bottom: 56px; font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.4; letter-spacing: -.012em;
+  text-wrap: pretty; }
+/* Browsers may break "501(c)(3)" between its brackets; the lead is large enough for that to show. */
+.home .nobreak { white-space: nowrap; }
+.home .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 16px 48px; padding: 48px 0; border-top: 1px solid var(--line); }
+.home .row > h2 { font-size: 1.45rem; letter-spacing: -.016em; line-height: 1.2; }
+.home .prose { max-width: none; padding: 0; }
+.home .prose > p, .home .prose > ul { max-width: 42em; }
+.home .prose > :first-child { margin-top: 0; }
+.home .prose > :last-child { margin-bottom: 0; }
+.home .programs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; }
+.home .programs > div { padding-top: 16px; border-top: 1px solid var(--line); }
+.home .programs h3 { margin: 0 0 8px; }
+.home .programs p { margin: 0; }
+.home .organization { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.home .organization > div > :first-child { margin-top: 0; }
+.home .friends { justify-content: flex-start; margin: 0; }
+@media (max-width: 860px) {
+  .home .row { grid-template-columns: minmax(0, 1fr); padding: 40px 0; }
+}
+@media (max-width: 620px) {
+  .home .programs, .home .organization { grid-template-columns: minmax(0, 1fr); }
+  .home .organization { gap: 0; }
+}
+
+/* TRIPLEBIT. The network map: land as a grid of dots (one path of zero-length dashes with round caps, made from the
+   owner's map image by tools/make-map.mjs), pins from _data/locations.json, and dashed lines between the core
+   locations that flow slowly, unless the reader asks for less motion. The legend is text under the map. */
+.map { margin: 28px 0; }
+.map > svg { width: 100%; height: auto; overflow: visible; }
+.map .land { fill: none; stroke: var(--map-land); stroke-width: .62; stroke-linecap: round; stroke-dasharray: 0 1; }
+.map .link { stroke: var(--pin-core); stroke-width: .35; stroke-dasharray: 1.2 .9; stroke-linecap: round; animation: map-flow 4s linear infinite; }
+@keyframes map-flow { to { stroke-dashoffset: -8.4; } }
+@media (prefers-reduced-motion: reduce) { .map .link { animation: none; } }
+.pin { fill-rule: evenodd; }
+.pin.core { fill: var(--pin-core); }
+.pin.edge { fill: var(--pin-edge); }
+.pin.soon { fill: var(--pin-soon); }
+.map .legend { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 16px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: .9rem; }
+.map .legend li { display: flex; align-items: center; gap: 8px; margin: 0; }
+.map .legend svg { width: 14px; height: 18px; }
