@@ -49,17 +49,53 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("root", (url) => "../".repeat(url.split("/").length - 2));
   // The id of a page's heading in the title band, made the same way as the ids of the headings in its Markdown.
   eleventyConfig.addFilter("headingId", (text) => unique(slugify(text), new Set()));
-  // The nav section (from _data/nav.json) that a page belongs to, if any.
-  eleventyConfig.addFilter("section", (nav, url) => nav.find((s) => s.pages.some((p) => p.url === url)));
-  // The pages to list under a section's heading. The heading links to the section's first page, so that page is left
-  // out when its label is the section's own (About, Projects); "What We Do" stays under Services. Used for the header
-  // dropdowns, the phone menu and the footer.
-  eleventyConfig.addFilter("subpages", (section) =>
-    section.pages[0].label === section.label ? section.pages.slice(1) : section.pages);
-  // How many of a section's page labels are long enough to wrap onto two lines in a phone's two-across columns (the
-  // header menu and the footer), about 150px wide: "Monero Remote Node" does, "Privacy Notice" does not. base.njk uses
-  // it to size each section's grid rows so the sections pack (see "Phones: sections pack" in site.css).
-  eleventyConfig.addFilter("longLabels", (pages) => pages.filter((p) => p.label.length > 16).length);
+  // The site's navigation, docs/_data/nav.json, feeds the header links and their dropdowns, the phone menu, the footer
+  // columns and sitemap.xml. (JSON has no comments, so its shape is described here.) It is a list of sections:
+  //   { "label": "Services", "url": "/services/", "items": [ ... ] }
+  // The section's label names it and links to its url, its own page. Its items are pages and groups, in order:
+  //   a page:  { "label": "Tor Relays", "url": "/relays/" }   (a url starting http:// or https:// is another site)
+  //   a group: { "group": "Tor", "items": [ pages ] }        (a label that is not a link, with pages under it)
+  // These filters turn a section into what the templates draw.
+  const external = (url) => /^https?:\/\//.test(url);
+  // A section's items as groups: { label, id, pages }, where pages outside any group form a group without a label,
+  // and each page says whether it is on another site.
+  const navGroups = (section) => {
+    const groups = [];
+    let loose = null;
+    for (const item of section.items || []) {
+      if (item.group) {
+        groups.push({ label: item.group, id: `${slugify(section.label)}-${slugify(item.group)}`,
+          pages: item.items.map((p) => ({ ...p, external: external(p.url) })) });
+        loose = null;
+      } else {
+        if (!loose) groups.push(loose = { label: null, pages: [] });
+        loose.pages.push({ ...item, external: external(item.url) });
+      }
+    }
+    return groups;
+  };
+  const navPages = (section) => navGroups(section).flatMap((g) => g.pages);
+  eleventyConfig.addFilter("navGroups", navGroups);
+  eleventyConfig.addFilter("navPages", navPages);
+  // Every page of this site in the nav, in order (for sitemap.xml): each section's own page, then its pages here.
+  eleventyConfig.addFilter("navUrls", (nav) =>
+    nav.flatMap((s) => [s.url, ...navPages(s).filter((p) => !p.external).map((p) => p.url)]));
+  // The nav section a page belongs to, if any.
+  eleventyConfig.addFilter("section", (nav, url) => nav.find((s) => s.url === url || navPages(s).some((p) => p.url === url)));
+  // How many grid rows a section spans on phones, where sections pack two across (see "Phones: sections pack" in
+  // site.css). A group label right under the heading is shorter than one after other links, which has more space
+  // above it. A label long enough to wrap in a column about 150px wide ("Monero Remote Node") needs more room. The
+  // counts may round up: a section's content only has to fit in its rows.
+  //   menu, 21px rows: heading 1, first label 2, other labels 2, link 2, wrapping label +1, gap 1
+  //   footer, 15px rows: heading 2, first label 2, other labels 3, link 2, wrapping label +1, gap 2
+  eleventyConfig.addFilter("packRows", (section, place) => {
+    const groups = navGroups(section), pages = navPages(section);
+    const labels = groups.filter((g) => g.label).length, first = groups[0]?.label ? 1 : 0;
+    const long = pages.filter((p) => p.label.length > 16).length;
+    return place === "menu"
+      ? 1 + 2 * labels + 2 * pages.length + long + 1
+      : 2 + 2 * first + 3 * (labels - first) + 2 * pages.length + long + 2;
+  });
   // A pin of the home page's network map (from _data/locations.json) by its id.
   eleventyConfig.addFilter("pin", (pins, id) => pins.find((p) => p.id === id));
 

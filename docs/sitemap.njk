@@ -3,9 +3,9 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-{#- Every page in the nav, which is every page but 404.html. #}
+{#- Every page of this site in the nav, which is every page but 404.html; links to other sites are left out. #}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{%- for s in nav %}{% for p in s.pages %}
-  <url><loc>https://www.triplebit.org{{ p.url }}</loc></url>
-{%- endfor %}{% endfor %}
+{%- for url in nav | navUrls %}
+  <url><loc>https://www.triplebit.org{{ url }}</loc></url>
+{%- endfor %}
 </urlset>

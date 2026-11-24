@@ -1,30 +1,46 @@
 [
   {
     "label": "About",
-    "pages": [
-      { "url": "/", "label": "About" },
-      { "url": "/people/", "label": "People" },
-      { "url": "/transparency/", "label": "Transparency" },
-      { "url": "/donate/", "label": "Donate" }
+    "url": "/",
+    "items": [
+      { "label": "People", "url": "/people/" },
+      { "label": "Transparency", "url": "/transparency/" },
+      { "label": "Donate", "url": "/donate/" },
+      { "label": "Privacy Notice", "url": "/privacy/" }
     ]
   },
   {
     "label": "Services",
-    "pages": [
-      { "url": "/services/", "label": "What We Do" },
-      { "url": "/relays/", "label": "Tor Relays" },
-      { "url": "/bridges/", "label": "Tor Bridges" },
-      { "url": "/legal/", "label": "Legal FAQ" },
-      { "url": "/monero/", "label": "Monero Remote Node" },
-      { "url": "/looking-glass/", "label": "Looking Glass" },
-      { "url": "/peering/", "label": "Peering" },
-      { "url": "/privacy/", "label": "Privacy Notice" }
+    "url": "/services/",
+    "items": [
+      {
+        "group": "Tor",
+        "items": [
+          { "label": "Tor Relays", "url": "/relays/" },
+          { "label": "Tor Bridges", "url": "/bridges/" },
+          { "label": "Legal FAQ", "url": "/legal/" }
+        ]
+      },
+      {
+        "group": "Network",
+        "items": [
+          { "label": "Looking Glass", "url": "/looking-glass/" },
+          { "label": "Peering", "url": "/peering/" }
+        ]
+      },
+      {
+        "group": "Other",
+        "items": [
+          { "label": "Monero Remote Node", "url": "/monero/" }
+        ]
+      }
     ]
   },
   {
     "label": "Projects",
-    "pages": [
-      { "url": "/projects/", "label": "Projects" }
+    "url": "/projects/",
+    "items": [
+      { "label": "Larvatus", "url": "https://larvat.us" }
     ]
   }
 ]

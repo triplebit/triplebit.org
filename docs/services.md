@@ -1,6 +1,8 @@
 ---
 layout: base.njk
-title: What We Do
+title: Services
+# The page was "What We Do"; its heading keeps that id so old #what-we-do links still land.
+titleId: what-we-do
 description: "Triplebit: A Minnesota, USA-based nonprofit internet service provider promoting privacy and human rights worldwide."
 ---
 

@@ -8,6 +8,29 @@
 {%- set root = "/" if page.url == "/404.html" else page.url | root -%}
 {%- set section = nav | section(page.url) -%}
 {%- macro href(url) -%}{{ "./" if url == page.url else (root + url.slice(1)) or "./" }}{%- endmacro -%}
+{#- A link to a page in the nav. A page on another site keeps its address, never counts as the current page, and has
+    a small arrow after its label. #}
+{%- macro item(p) -%}
+{%- if p.external -%}
+<a href="{{ p.url }}">{{ p.label }}<svg class="ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
+{%- else -%}
+<a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a>
+{%- endif -%}
+{%- endmacro -%}
+{#- A section's pages as lists, one per group; a group's label is plain text that names its list. place keeps the
+    ids apart (the header panel, the phone menu and the footer each draw the same groups). #}
+{%- macro lists(s, place) -%}
+{%- for g in s | navGroups %}
+{%- if g.label %}
+<div class="group" id="{{ place }}-{{ g.id }}">{{ g.label }}</div>
+{%- endif %}
+<ul{% if g.label %} aria-labelledby="{{ place }}-{{ g.id }}"{% endif %}>
+{%- for p in g.pages %}
+  <li>{{ item(p) }}</li>
+{%- endfor %}
+</ul>
+{%- endfor %}
+{%- endmacro -%}
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,44 +54,30 @@
         to the bars' width (see .nav .lockup in site.css). The svg sits in a span so that, as in the footer, it lines up
         with the text by vertical-align. #}
     <a class="lockup" href="{{ href('/') }}"><span><svg viewBox="10 0 44 64" aria-hidden="true"><g transform="translate(10 10) scale(.0859375)"><g transform="matrix(0.496018,0,-0.0914032,0.403727,-118.796,-82.1196)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#0ff"/></g><g transform="matrix(0.496018,0,-0.0911934,0.403727,17.0446,173.88)"><rect x="393.826" y="203.404" width="641.427" height="634.09" fill="#f00"/></g><g transform="matrix(0.496018,0,-0.0914032,0.403727,-50.8209,45.8802)"><rect x="393.826" y="203.404" width="641.427" height="634.09" class="tb-band"/></g></g></svg></span><span>Triplebit</span></a>
-    {#- Each section links to its first page and is marked while one of its pages is open. On wide screens a section
-        with pages besides the one its link goes to lists them in a panel that opens on hover and on keyboard focus; on phones these links
-        hide and the menu button below lists everything. All of it comes from _data/nav.json. #}
+    {#- Each section links to its own page and is marked while it or one of its pages is open. On wide screens its
+        pages (and groups of pages) show in a panel that opens on hover and on keyboard focus; on phones these links
+        hide and the menu button below lists everything. All of it comes from _data/nav.json (its shape is described in
+        eleventy.config.js). #}
     {%- for s in nav %}
-    {%- set current = (' aria-current="' + ('page' if s.pages[0].url == page.url else 'true') + '"') if s == section else '' %}
-    {%- set pages = s | subpages %}
-    {%- if pages.length %}
-    <div class="hide drop">
-      <a href="{{ href(s.pages[0].url) }}"{{ current | safe }}>{{ s.label }}</a>
-      <div class="panel">
-        <ul>
-          {%- for p in pages %}
-          <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
-          {%- endfor %}
-        </ul>
-      </div>
+    {%- set current = (' aria-current="' + ('page' if s.url == page.url else 'true') + '"') if s == section else '' %}
+    {%- if s | navPages | length %}
+    <div class="hide drop{% if loop.last %} end{% endif %}">
+      <a href="{{ href(s.url) }}"{{ current | safe }}>{{ s.label }}</a>
+      <div class="panel"><div class="box">{{ lists(s, "drop") }}</div></div>
     </div>
     {%- else %}
-    <a class="hide" href="{{ href(s.pages[0].url) }}"{{ current | safe }}>{{ s.label }}</a>
+    <a class="hide" href="{{ href(s.url) }}"{{ current | safe }}>{{ s.label }}</a>
     {%- endif %}
     {%- endfor %}
     <details class="menu">
       <summary aria-label="Menu"><svg class="open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></summary>
       <div class="menu-panel">
         {%- for s in nav %}
-        {%- set pages = s | subpages %}
-        {#- Each section's heading links to its first page, and its other pages are listed under it. --rows sizes the
-            section for packing on phones: a heading, two rows per link plus one per wrapping label, and a gap
-            (site.css). #}
-        <div style="--rows: {{ pages.length * 2 + (pages | longLabels) + 2 }}">
-          <p><a href="{{ href(s.pages[0].url) }}"{% if s.pages[0].url == page.url %} aria-current="page"{% endif %}>{{ s.label }}</a></p>
-          {%- if pages.length %}
-          <ul>
-            {%- for p in pages %}
-            <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
-            {%- endfor %}
-          </ul>
-          {%- endif %}
+        {#- Each section's heading links to its own page, and its pages are listed under it. --rows sizes the section
+            for packing on phones (the packRows filter). #}
+        <div style="--rows: {{ s | packRows('menu') }}">
+          <p><a href="{{ href(s.url) }}"{% if s.url == page.url %} aria-current="page"{% endif %}>{{ s.label }}</a></p>
+          {{ lists(s, "menu") }}
         </div>
         {%- endfor %}
       </div>
@@ -79,7 +88,8 @@
   <div class="wrap title">
     {#- The heading's id is the one MkDocs gave it, so old #links still land; pages whose MkDocs heading had none set
         titleAnchor: false. #}
-    <h1{% if titleAnchor != false %} id="{{ title | headingId }}"{% endif %}>{{ title }}</h1>
+    {#- titleId sets the id outright, for a page whose title has changed since (Services was "What We Do"). #}
+    <h1{% if titleAnchor != false %} id="{{ titleId or (title | headingId) }}"{% endif %}>{{ title }}</h1>
     {%- if subtitle %}
     <p class="date">{{ subtitle }}</p>
     {%- endif %}
@@ -104,18 +114,10 @@
     </div>
     <nav aria-label="Footer">
       {%- for s in nav %}
-      {%- set pages = s | subpages %}
-      {#- As in the menu, the heading links to the section's first page. --rows sizes the section for packing on
-          phones: a heading, a row per link plus one per wrapping label, and a gap (site.css). #}
-      <div style="--rows: {{ pages.length + (pages | longLabels) + 2 }}">
-        <h2><a href="{{ href(s.pages[0].url) }}"{% if s.pages[0].url == page.url %} aria-current="page"{% endif %}>{{ s.label }}</a></h2>
-        {%- if pages.length %}
-        <ul>
-          {%- for p in pages %}
-          <li><a href="{{ href(p.url) }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.label }}</a></li>
-          {%- endfor %}
-        </ul>
-        {%- endif %}
+      {#- As in the menu, the heading links to the section's own page; --rows sizes it for packing on phones. #}
+      <div style="--rows: {{ s | packRows('footer') }}">
+        <h2><a href="{{ href(s.url) }}"{% if s.url == page.url %} aria-current="page"{% endif %}>{{ s.label }}</a></h2>
+        {{ lists(s, "foot") }}
       </div>
       {%- endfor %}
     </nav>

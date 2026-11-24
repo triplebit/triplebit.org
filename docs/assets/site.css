@@ -13,15 +13,16 @@
      it for a band as light as the page, its focus ring and current-link underline, and the border of its menus), text on the accent, the light
      button on the band (the Donate button), the outline button's hover (a tint of the red), the filled button's shadow (red-tinted on the light page, plain
      dark on the dark one), the focus ring and list markers (cyan where it has
-     contrast), highlighted text, the black footer (its background, rule, text, small print and links, and the
-     footer mark, white with black bars in both themes), the surface behind pictures made for a white page (white in the
+     contrast), highlighted text, the footer (black in the light theme and white in the dark one: its background, rule,
+     text, small print and links, group labels, focus ring, and the footer mark, which is the opposite of the footer), the surface behind pictures made for a white page (white in the
      dark theme), and the network map (land dots and the three kinds of pin). The theme-color meta tags in base.njk
      repeat --band. */
   --band: #000000; --band-text: #ffffff; --band-mark: #ffffff; --band-line: transparent; --band-focus: #00ffff; --band-panel-line: #3a3a3a; --on-accent: #ffffff;
   --light-bg: #ffffff; --light-text: #cc0000; --light-hover: #ffe8e8; --light-shadow: none;
   --outline-hover: #ffe8e8; --accent-shadow: 0 8px 22px rgb(204 0 0 / .26); --accent-shadow-hover: 0 12px 28px rgb(204 0 0 / .34);
   --focus: #008b8b; --marker: #008b8b; --highlight: #fff3a3;
-  --footer-bg: #000000; --footer-line: transparent; --footer-text: #ffffff; --footer-muted: #b5b5b8;
+  --footer-bg: #000000; --footer-line: transparent; --footer-text: #ffffff; --footer-muted: #b5b5b8; --footer-faint: #8e8e93;
+  --footer-focus: #00ffff;
   --logo-back: #ffffff; --logo-front: #000000; --picture-surface: transparent;
   --map-land: #ecc3c3; --pin-core: #cc0000; --pin-edge: #00838f; --pin-soon: #8a8a8a;
   --wrap: 1200px;
@@ -32,7 +33,8 @@
     --line: #2c2c30; --ink: #ff6b6b;
     --outline-hover: #3a1517; --accent-shadow: 0 8px 22px rgb(0 0 0 / .55); --accent-shadow-hover: 0 12px 28px rgb(0 0 0 / .7);
     --focus: #00ffff; --marker: #00ffff; --highlight: #5c4d00;
-    --footer-line: #2c2c30; --picture-surface: #ffffff;
+    --footer-bg: #ffffff; --footer-text: #111111; --footer-muted: #4d4d52; --footer-faint: #6b6b70; --footer-focus: #007a80;
+    --logo-back: #000000; --logo-front: #ffffff; --picture-surface: #ffffff;
     --map-land: #6a4349; --pin-core: #ff4d4d; --pin-edge: #00e5ff; --pin-soon: #8f8f8f;
   }
 }
@@ -125,14 +127,24 @@ h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
    down to it. */
 .nav .drop .panel { display: none; position: absolute; z-index: 10; top: 100%; left: -16px; padding-top: 12px; }
 .nav .drop:hover .panel, .nav .drop:focus-within .panel { display: block; }
-.nav .panel ul { min-width: 210px; margin: 0; padding: 8px 0; list-style: none; border: 1px solid var(--band-panel-line); border-radius: 10px;
-  background: var(--band); }
+.nav .drop.end .panel { left: auto; right: -16px; }
+.nav .panel .box { min-width: 210px; padding: 8px 0; border: 1px solid var(--band-panel-line); border-radius: 10px; background: var(--band); }
+.nav .panel ul { margin: 0; padding: 0; list-style: none; }
 .nav .panel a { display: block; padding: 7px 16px; }
+/* A group's label: plain text, smaller and fainter than the links, with a little space above. */
+.nav .group { font-size: .75rem; font-weight: 600; letter-spacing: .01em; opacity: .6; }
+/* Spacing, everywhere group labels appear: a label sits close to its own first link and clearly apart from the group
+   above (about three times the space above as below), and the links within a group sit between the two. */
+.nav .panel .group { padding: 20px 16px 0; line-height: 1.2; }
+.nav .panel .group:first-child { padding-top: 6px; }
+/* A link to another site has a small arrow after its label. */
+.ext { display: inline-block; width: .62em; height: .62em; margin-left: .35em; vertical-align: .02em; fill: none; stroke: currentColor;
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 /* The phone menu. Hidden on wide screens, where the links show. */
 .menu summary { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 10px; cursor: pointer; list-style: none; }
 .menu summary::-webkit-details-marker { display: none; }
 .menu summary::marker { content: ""; }
-.menu svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.menu summary svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .menu .close, .menu[open] .open { display: none; }
 .menu[open] .close { display: block; }
 /* Open, the menu lays the sections out under the header across the band's full width, over the page. */
@@ -153,11 +165,14 @@ h3 { font-size: 1.2rem; letter-spacing: -.012em; line-height: 1.25; }
    put Projects under Services instead.) The rows are sized so a heading, a link and the gap each fill whole rows. */
 .menu-panel { grid-auto-rows: 21px; row-gap: 0; }
 .menu-panel > div { grid-row: span var(--rows); }
-.menu-panel p { height: 21px; margin: 0; line-height: 17px; }
+.menu-panel p { height: 21px; margin: 0; padding-top: 4px; line-height: 17px; }
 .nav .menu-panel a { line-height: 24px; }
 /* A label that wraps (Monero Remote Node) keeps its two lines close: tighter lines, with padding making up the
    difference so a one-line item stays 42px, two rows. */
 .nav .menu-panel li a { padding: 11px 0; line-height: 20px; }
+/* A group's label fills one row, its text at the bottom. */
+.menu-panel .group { height: 42px; padding-top: 25px; line-height: 15px; }
+.menu-panel p + .group { height: auto; padding-top: 10px; }
 
 /* SHARED. The footer. */
 footer { padding: 40px 0 56px; border-top: 1px solid var(--footer-line); color: var(--footer-muted); font-size: .9rem; }
@@ -169,16 +184,16 @@ footer .lockup { --mark: 2rem; align-items: baseline; color: var(--footer-text);
   font-style: italic; letter-spacing: 0; line-height: 1; }
 footer .lockup svg { display: inline-block; width: var(--mark); height: var(--mark); vertical-align: calc(var(--mark) * -21 / 64); }
 /* The footer lockup is Triplebit's mark, linked to its site, beside a line of text. On Larvatus the mark is white bars
-   on black, and black bars on white in the dark theme; on this site's black footer it is black bars on white in both
-   (the tokens). */
+   on black, and black bars on white in the dark theme; on this site, whose footer is itself black or white, the mark is
+   the opposite of the footer (the tokens). */
 .tb-back { fill: var(--logo-back); }
 .tb-front { fill: var(--logo-front); }
 footer nav a { color: var(--footer-muted); text-decoration: none; }
 footer nav a:hover { color: var(--footer-text); text-decoration: underline; }
 /* TRIPLEBIT. Here the text beside the mark is the name, in capitals like the nav lockup. */
 footer .lockup span { text-transform: uppercase; }
-/* TRIPLEBIT. Larvatus's footer is one row (lockup, nav, small print) on the page's color; this one is black, in
-   columns, by the owner's choice (2026-11-24), so Larvatus's footer .wrap, footer nav and footer p rules are left out.
+/* TRIPLEBIT. Larvatus's footer is one row (lockup, nav, small print) on the page's color; this one is black in the
+   light theme and white in the dark theme, in columns, by the owner's choice (2026-11-24), so Larvatus's footer .wrap, footer nav and footer p rules are left out.
    On desktop widths the lockup keeps exactly the place it has on Larvatus: top left of .wrap, under the same padding.
    Beside it, a column per nav section; the columns fill the space and wrap onto further rows, so more sections need no
    change here. On a phone the sections come first, two across, and the brand column (lockup, small print, seal) goes
@@ -193,18 +208,29 @@ footer h2 { margin-bottom: 10px; color: var(--footer-text); font-size: .9rem; fo
 footer ul { padding: 0; list-style: none; }
 footer li + li { margin-top: 6px; }
 footer nav a[aria-current] { color: var(--footer-text); }
+footer :focus-visible { outline-color: var(--footer-focus); }
+/* A group's label: plain text, smaller and fainter than the links, with a little space above. */
+footer .group { margin: 20px 0 4px; color: var(--footer-faint); font-size: .78rem; font-weight: 600; letter-spacing: .01em; line-height: 1.2; }
+footer h2 + .group { margin-top: 0; }
 @media (max-width: 760px) {
   footer .brand { order: 1; }
-  /* Phones: sections pack, as in the menu (see there). A row is a link's height (24px) and its 6px gap. */
-  footer nav { grid-auto-rows: 30px; row-gap: 0; margin-bottom: -30px; }
+  /* Phones: sections pack, as in the menu (see there). A row is 15px: a link (24px and its 6px gap) is two. */
+  footer nav { grid-auto-rows: 15px; row-gap: 0; margin-bottom: -30px; }
   footer nav > div { grid-row: span var(--rows); }
-  footer h2 { margin-bottom: 6px; line-height: 24px; }
+  /* The heading and each link are 24px with 6px above, two rows each. A group label is 16px with 25px above and 4px
+     below, three rows; right under the heading, 10px above, two rows. */
+  footer h2 { margin-bottom: 0; line-height: 24px; }
+  footer nav ul { margin: 6px 0 0; }
+  footer .group { margin: 25px 0 0; line-height: 16px; }
+  footer h2 + .group { margin-top: 10px; }
+  footer .group + ul { margin-top: 4px; }
   /* A wrapping label keeps its lines close (19px apart); padding keeps a one-line item 24px tall. */
   footer li { padding: 2.5px 0; line-height: 19px; }
 }
 /* The section headings link to each section's first page and look like the headings they are. */
 footer h2 a { color: inherit; }
 footer nav h2 a[aria-current] { color: inherit; text-decoration: underline; }
+footer nav h2 a:hover { color: inherit; }
 /* Desktop: the brand column is as wide as the small print on one line, and the sections are a compact group of columns
    at the right, each as wide as its longest label, wrapping onto further rows when there are more than fit. */
 @media (min-width: 761px) {
