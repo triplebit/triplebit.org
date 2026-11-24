@@ -192,6 +192,7 @@ footer nav a { color: var(--footer-muted); text-decoration: none; }
 footer nav a:hover { color: var(--footer-text); text-decoration: underline; }
 /* TRIPLEBIT. Here the text beside the mark is the name, in capitals like the nav lockup. */
 footer .lockup span { text-transform: uppercase; }
+footer .lockup span a { color: inherit; text-decoration: none; }
 /* TRIPLEBIT. Larvatus's footer is one row (lockup, nav, small print) on the page's color; this one is black in the
    light theme and white in the dark theme, in columns, by the owner's choice (2026-11-24), so Larvatus's footer .wrap, footer nav and footer p rules are left out.
    On desktop widths the lockup keeps exactly the place it has on Larvatus: top left of .wrap, under the same padding.
